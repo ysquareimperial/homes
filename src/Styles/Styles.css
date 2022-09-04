@@ -1,0 +1,164 @@
+* {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.input_field {
+  padding: 10px;
+  border: none;
+  background-color: rgb(186, 207, 68);
+  margin-top: 10px;
+  width: 400px;
+  color: rgb(34, 64, 41);
+}
+.input_field::placeholder {
+  color: rgb(34, 64, 41);
+}
+
+.input_field:focus {
+  outline: none;
+}
+.w {
+  font-weight: bold;
+  font-size: 35px;
+  margin: 0;
+  color: rgb(34, 64, 41);
+}
+.forgot {
+  color: rgb(34, 64, 41);
+  font-size: 12px;
+  margin-top: 5px;
+}
+.login-btn {
+  background-color: rgb(34, 64, 41);
+  color: white;
+  border: none;
+  padding: 10px 50px;
+  transition: 500ms;
+}
+
+.login-btn:hover {
+  border-radius: 8px;
+  background-color: rgb(34, 64, 41);
+}
+
+.footer-text {
+  color: rgb(34, 64, 41);
+  font-size: 10px;
+}
+.login-card {
+  border: none !important;
+  border-radius: 20px !important;
+}
+.flexx {
+  margin-top: 140px;
+}
+
+.left-login-div {
+  background-color: rgb(34, 64, 41);
+  height: 100vh;
+}
+
+.right-login-div {
+  background-color: rgb(186, 207, 68);
+  height: 100vh;
+}
+
+.divided-row {
+  position: static;
+}
+.login-row {
+  position: relative;
+  top: -715px;
+}
+
+.img-col {
+  /* text-align: center; */
+  /* background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; */
+  /* height: 100vh; */
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 136.9%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.sidebarr {
+  background-color: rgb(34, 64, 41);
+  color: white;
+  height: 100vh;
+}
+
+.navbarr {
+  background-color: rgb(186, 207, 68);
+}
+.list {
+  margin: 0;
+  /* margin-top: 5px; */
+  padding: 5px;
+}
+.list:hover {
+  cursor: pointer;
+  background-color: rgba(80, 139, 94, 0.5);
+  border-radius: 5px;
+}
+.admin-card {
+  border-radius: 15px !important;
+  height: 90vh !important;
+  /* border: none; */
+  /* background-color: rgb(248, 248, 248) !important; */
+}
+.card-title {
+  color: rgb(34, 64, 41);
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.action-btn {
+  color: white;
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    rgb(34, 64, 41),
+    rgb(186, 207, 68)
+  );
+
+  padding: 5px 20px;
+  border-radius: 20px;
+}
+.inputs {
+  background-color: rgb(227, 227, 227);
+  border: none;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+.inputs:focus {
+  outline: 1px solid rgb(34, 64, 41);
+}
+
+.menu {
+  padding: 5px;
+  transition: 500ms;
+}
+.menu:hover {
+  background-color: rgb(188, 188, 188);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.menu-div{
+    text-align: center;
+    margin: 0;
+}
+.p-menu{
+    margin: 0;
+    cursor: pointer;
+    transition: 500ms;
+}
+.p-menu:hover{
+    background-color: rgb(229, 229, 229);
+    padding: 10px;
+    border-radius: 10px;
+}
