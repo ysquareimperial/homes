@@ -7,7 +7,7 @@ import Sidebar from '../Menu.js/Sidebar'
 export default function AppIndex() {
     return (
         <div>
-            <Row className='m-0 navbarr'>
+            <Row className='m-0'>
                 <Navbar />
             </Row>
             <Row className='m-0'>

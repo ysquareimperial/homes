@@ -24,7 +24,7 @@ export default function Login() {
                                     }}
                                     ></Col> */}
                                     <Col md={6}>
-                                        <img src={cover} className="img-col" alt=''/>
+                                        <img src={cover} className="img-col" alt='' />
                                     </Col>
                                     <Col md={6} className='pt-5'>
                                         <p className='w'>Welcome</p>
@@ -36,7 +36,7 @@ export default function Login() {
                                         </div>
                                         <p className='forgot'>Forgot password?</p>
                                         <div>
-                                            <button className='login-btn' onClick={()=>navigate('/admin')}>Login</button>
+                                            <button className='login-btn' onClick={() => navigate('/admin/home')}>Login</button>
                                         </div>
                                     </Col>
                                 </Row>
@@ -48,7 +48,7 @@ export default function Login() {
                                                 <p className='footer-text'>Privacy . Policy . Terms and Conditions</p>
                                             </Col>
                                             <Col md={6}>
-                                                <p className='footer-text' style={{float:'right', marginRight:15}}>Homes &copy; 2022    </p>
+                                                <p className='footer-text' style={{ float: 'right', marginRight: 15 }}>Homes &copy; 2022    </p>
                                             </Col>
                                         </Row>
                                     </Col>

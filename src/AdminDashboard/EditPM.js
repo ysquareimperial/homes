@@ -4,37 +4,40 @@ import { useNavigate } from 'react-router-dom'
 import { Card, Col, Row } from 'reactstrap'
 import Button from './Button'
 
-export default function CreateUserPortfolio() {
-  const navigate = useNavigate()
+export default function EditPM() {
+    const navigate = useNavigate()
 
     return (
         <div className='mt-4'>
             <Card className='admin-card p-3'>
-                <p className='card-title'>Add Operator</p>
+                <p className='card-title'>Edit PM</p>
                 <Row>
                     <Col md={6}>
                         <div>
-                            <input type='text' className='inputs' placeholder='First Name' />
+                            <input type='address' className='inputs' placeholder='PM Adress' />
                         </div>
                         <div>
-                            <input type='text' className='inputs' placeholder='Email' />
+                            <input type='text' className='inputs' placeholder='Last Name' />
                         </div>
                     </Col>
                     <Col md={6}>
                         <div>
-                            <input type='text' className='inputs' placeholder='Last Name' />
+                            <input type='text' className='inputs' placeholder='First Name' />
                         </div>
                         <div>
                             <input type='text' className='inputs' placeholder='Phone' />
                         </div>
                     </Col>
                     <Col md={6}>
-                        <div>
-                            <input type='text' className='inputs' placeholder='Portfolio Name' />
+                        <div className='select'>
+                            <select>
+                                <option>-change operator-</option>
+                                <option>operator 1</option>
+                            </select>
                         </div>
                     </Col>
                 </Row>
-                <Button btnText={'Save'} icon={<FaSave/>} onClick={() => navigate('/admin/operators')}/>
+                <Button btnText={'Save'} icon={<FaSave />} onClick={() => navigate('/admin/PM')} />
             </Card>
         </div>
     )

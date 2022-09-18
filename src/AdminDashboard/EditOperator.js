@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import { Card, Col, Row } from 'reactstrap'
 import Button from './Button'
 
-export default function CreateUserPortfolio() {
+export default function EditOperator() {
   const navigate = useNavigate()
 
     return (
         <div className='mt-4'>
             <Card className='admin-card p-3'>
-                <p className='card-title'>Add Operator</p>
+                <p className='card-title'>Edit Operator</p>
                 <Row>
                     <Col md={6}>
                         <div>

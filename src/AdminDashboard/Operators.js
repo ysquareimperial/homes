@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaPlus } from 'react-icons/fa'
-import { Navigate } from 'react-router-dom'
-import { IoChatbubbleEllipsesSharp } from 'react-icons/io'
+// import { Navigate } from 'react-router-dom'
+// import { IoChatbubbleEllipsesSharp } from 'react-icons/io'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { Card, Col, Modal, ModalBody, Row, Table } from 'reactstrap'
 import Button from './Button'
@@ -18,7 +18,8 @@ export default function Operators() {
       firstName: 'Habu',
       lastName: 'Yakasai',
       email: 'habu@homes.com',
-      phone: '+234 9018661696'
+      phone: '+234 9018661696',
+      portfolio: "H"
     }
   ]
   return (
@@ -29,7 +30,7 @@ export default function Operators() {
             <p className='card-title'>Operators</p>
           </Col>
           <Col md={6}>
-            <Button btnText='Add Operator' icon={<FaPlus />} onClick={() => navigate('/admin/create-user-portfolio')} />
+            <Button btnText='Add Operator' icon={<FaPlus />} style={{float:'right'}} onClick={() => navigate('/admin/create-portfolio')} />
           </Col>
         </Row>
 
@@ -38,6 +39,9 @@ export default function Operators() {
             <tr>
               <th>
                 S/N
+              </th>
+              <th>
+                Porfolio
               </th>
               <th>
                 First Name
@@ -63,6 +67,9 @@ export default function Operators() {
                   {index + 1}
                 </th>
                 <td>
+                  {item.portfolio}
+                </td>
+                <td>
                   {item.firstName}
                 </td>
                 <td>
@@ -86,7 +93,9 @@ export default function Operators() {
         <Modal size="sm" isOpen={open1} toggle={toggle1} className="avail-cars" style={{padding:0}}>
           <ModalBody className="modal-body">
             <div className='menu-div'>
-              <p className='p-menu'>View</p>
+              {/* <p className='p-menu'>View</p> */}
+              {/* <hr style={{width:'100%'}}/> */}
+              <p className='p-menu' onClick={()=>navigate('/admin/edit-operator')}>Edit</p>
               <hr style={{width:'100%'}}/>
               {/* <p className='p-menu'>Edit</p> */}
               <p className='p-menu' style={{color:'red'}}>Delete</p>

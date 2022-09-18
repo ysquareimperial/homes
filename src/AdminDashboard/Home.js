@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card } from 'reactstrap'
 
-export default function AdminHome() {
+export default function Home() {
     return (
         <div className='mt-4'>
             <Card className='admin-card p-3'>
