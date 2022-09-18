@@ -1,17 +1,11 @@
-import React, { useState } from 'react'
-import { ArrowDownCircle, Settings } from 'react-feather'
-import { AiOutlineEllipsis, AiOutlineMenu, AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'
-import { FaBell, FaEllipsisH } from 'react-icons/fa'
-import { MdCircleNotifications, MdNotificationAdd, MdNotificationImportant } from 'react-icons/md'
-import { Navigate, useNavigate } from 'react-router-dom'
-import { Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Row } from 'reactstrap'
+import React from 'react'
+import { FaBell } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+import { Col, Row } from 'reactstrap'
 import logo from '../Images/HomesLogo.jpg'
 import user from '../Images/profile.jpg'
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const toggle = () => {
-    setOpen(!open);
-  };
+
   const navigate = useNavigate()
   return (
     <div className='navb'>
@@ -19,7 +13,7 @@ export default function Navbar() {
         <Col md={1}>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50px' }}>
             <div>
-              <img src={logo} className='logo' />
+              <img src={logo} className='logo' alt='homes logo' />
             </div>
           </div>
         </Col>
@@ -45,7 +39,7 @@ export default function Navbar() {
               <FaBell size='1.6em' style={{ color: 'rgb(34, 64, 41)', zIndex: 1 }} />
             </div>
             <div className='bell_user_icon_div'>
-              <p className='username'>Habu Yakasai{' '}<img src={user} className='userimage' /></p>
+              <p className='username'>Habu Yakasai{' '}<img src={user} className='userimage' alt='' /></p>
             </div>
           </div>
         </Col>

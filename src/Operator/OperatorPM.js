@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
-import { Filter, Search } from 'react-feather';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { FaFilter, FaPlus } from 'react-icons/fa';
-import { MdFilter, MdFilterList, MdOutlineFilter1, MdOutlineFilter2 } from 'react-icons/md';
+import {MdFilterList } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { Card, Col, Modal, ModalBody, Row, Table } from 'reactstrap'
-import Button from '../AdminDashboard/Button'
 
 export default function OperatorPM() {
     const [open1, setOpen1] = useState(false);

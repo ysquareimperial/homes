@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { Edit, Trash, Eye, PlusSquare } from 'react-feather';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { FaPen, FaPlus } from 'react-icons/fa';
+import { Eye, PlusSquare } from 'react-feather';
 import { useNavigate } from 'react-router-dom';
 import { Card, Col, Modal, ModalBody, Row, Table } from 'reactstrap'
 import Button from '../AdminDashboard/Button'

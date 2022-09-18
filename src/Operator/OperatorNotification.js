@@ -1,8 +1,7 @@
 import React from 'react'
-import { FaCalendar, FaDollarSign, FaMoneyBill, FaPen, FaPhone, FaTrash, FaUser } from 'react-icons/fa'
+import { FaCalendar, FaMoneyBill, FaPhone, FaTrash, FaUser } from 'react-icons/fa'
 import { MdMapsHomeWork } from 'react-icons/md'
 import { Card, Col, Row } from 'reactstrap'
-import Button from '../AdminDashboard/Button'
 
 export default function OperatorNotification() {
     const notificationData = [{
@@ -103,7 +102,7 @@ export default function OperatorNotification() {
                                 <Col md={2}>
                                     <div className='not_data'>
 
-                                        <FaCalendar className='not_icon' size='1em' color='grey' />
+                                        <FaCalendar className='not_icon' size='1em' color='grey' /> 
                                         {' '}{item.expiryDate}
                                     </div>
                                 </Col>
