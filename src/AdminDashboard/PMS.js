@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Filter, Search } from 'react-feather';
+// import { Filter, Search } from 'react-feather';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { FaFilter, FaPlus } from 'react-icons/fa';
-import { MdFilter, MdFilterList, MdOutlineFilter1, MdOutlineFilter2 } from 'react-icons/md';
+import { FaPlus } from 'react-icons/fa';
+import {MdFilterList} from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { Card, Col, Modal, ModalBody, Row, Table } from 'reactstrap'
 import Button from './Button'
