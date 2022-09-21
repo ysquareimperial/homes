@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// import { Edit, Trash } from 'react-feather';
+import { Edit, Trash } from 'react-feather';
 import { Card, Col, Modal, ModalBody, Row, Table } from 'reactstrap'
 import Button from '../AdminDashboard/Button'
 

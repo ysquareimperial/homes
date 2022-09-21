@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// import { Edit, Trash } from 'react-feather';
+import { Edit, Trash } from 'react-feather';
 // import { useNavigate } from 'react-router-dom';
 import { Card, Col, Modal, ModalBody, Row, Table } from 'reactstrap'
 import Button from './Button'
