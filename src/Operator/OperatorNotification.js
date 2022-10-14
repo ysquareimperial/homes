@@ -24,7 +24,8 @@ export default function OperatorNotification() {
             <Card className='admin-card p-3'>
                 <Row>
                     <Col md={6}>
-                        <p className='card-title'>Notifications</p>
+                        <p className='card-title m-0'>Notifications</p>
+                        <p className='' style={{ fontSize: 20 }}>Due Rents</p>
                     </Col>
                     <Col md={6}>
                         {/* <Button btnText='Edit PM' icon={<FaPen />} style={{ float: 'right' }} onClick={() => navigate('/admin/edit-pm')} /> */}
@@ -32,43 +33,10 @@ export default function OperatorNotification() {
                     <Col md={2}>
                     </Col>
                 </Row>
-                {/* <Row>
-
-                    <Col md={2}>
-                        <div className='not_icon'>
-                            <MdMapsHomeWork className='' size='1.5em' color='grey' />
-                        </div>
-
-                    </Col>
-                    <Col md={2}>
-                        <div className='not_icon'>
-                            <FaUser className='' size='1.5em' color='grey' />
-                        </div>
-
-                    </Col>
-                    <Col md={2}>
-                        <div className='not_icon'>
-                            <FaPhone className='' size='1.5em' color='grey' />
-                        </div>
-
-                    </Col>
-                    <Col md={2}>
-                        <div className='not_icon'>
-                            <FaMoneyBill className='' size='1.5em' color='grey' />
-                        </div>
-
-                    </Col>
-                    <Col md={2}>
-
-                        <div className='not_icon'>
-                            <FaCalendar className='' size='1.5em' color='grey' />
-                        </div>
-                    </Col>
-                </Row> */}
-
+                
                 {notificationData.map((item) =>
                 (
-                    <div className='' style={{fontSize:12}}>
+                    <div className='' style={{ fontSize: 12 }}>
                         <Card className='not_card shadow-sm p-2 m-1'>
                             <Row>
                                 <Col md={2} className=''>
@@ -102,14 +70,14 @@ export default function OperatorNotification() {
                                 <Col md={2}>
                                     <div className='not_data'>
 
-                                        <FaCalendar className='not_icon' size='1em' color='grey' /> 
+                                        <FaCalendar className='not_icon' size='1em' color='grey' />
                                         {' '}{item.expiryDate}
                                     </div>
                                 </Col>
                                 <Col md={1}>
                                     <div className='not_data'>
 
-                                        <FaTrash className='not_icon' size='1em' color='grey' style={{float:'right', marginTop:''}}/>
+                                        <FaTrash className='not_icon' size='1em' color='grey' style={{ float: 'right', marginTop: '' }} />
                                         {/* {' '}{item.expiryDate} */}
                                     </div>
                                 </Col>

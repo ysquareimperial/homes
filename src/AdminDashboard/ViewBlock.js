@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Edit, Trash } from 'react-feather';
+import { Edit, MessageCircle, Plus, Printer, Trash } from 'react-feather';
 // import { useNavigate } from 'react-router-dom';
 import { Card, Col, Modal, ModalBody, Row, Table } from 'reactstrap'
 import Button from './Button'
@@ -14,6 +14,18 @@ export default function ViewBlock() {
     const toggle3 = () => {
         setOpen3(!open3);
     };
+    const [open4, setOpen4] = useState(false);
+    const toggle4 = () => {
+        setOpen4(!open4);
+    };
+    const [open5, setOpen5] = useState(false);
+    const toggle5 = () => {
+        setOpen5(!open5);
+    };
+    // const [open6, setOpen6] = useState(false);
+    // const toggle6 = () => {
+    //     setOpen6(!open6);
+    // };
     // const navigate = useNavigate()
 
     const operatorsData = [
@@ -132,6 +144,8 @@ export default function ViewBlock() {
                                     <div style={{ float: 'right' }}>
                                         <Edit className='menu' size='1.5em' onClick={toggle3} />
                                         <Trash className='menu' size='1.5em' onClick={toggle} />
+                                        <MessageCircle className='menu' size='1.5em' onClick={toggle4} />
+                                        <Printer className='menu' size='1.5em' onClick={toggle5} />
                                     </div>
                                 </td>
                             </tr>
@@ -165,7 +179,14 @@ export default function ViewBlock() {
                             <div className='select'>
                                 <select>
                                     <option>-select accommodation-</option>
-                                    <option>Shop</option>
+                                    <option>Duplex</option>
+                                    <option>Bungalo</option>
+                                    <option>Terrace</option>
+                                    <option>Apartment</option>
+                                    <option>Detached</option>
+                                </select>
+                                <select>
+                                    <option>-select bedroom-</option>
                                     <option>1 Bedroom</option>
                                     <option>2 Bedrooms</option>
                                     <option>3 Bedrroms</option>
@@ -203,6 +224,88 @@ export default function ViewBlock() {
                         <div>
                             <Button btnText={'Delete'} onClick={toggle} />
                         </div>
+                    </div>
+                </ModalBody>
+            </Modal>
+
+            <Modal size="sm" isOpen={open4} toggle={toggle4} className="avail-cars" style={{ padding: 0 }}>
+                <ModalBody className="modal-body">
+                    <div className='menu-div'>
+                        <h6>Add Remark</h6>
+                        <textarea></textarea>
+                        <div>
+                            <Button btnText={'Save'} onClick={toggle4} />
+                        </div>
+                    </div>
+                </ModalBody>
+            </Modal>
+
+            <Modal size="sm" isOpen={open5} toggle={toggle5} className="avail-cars" style={{ padding: 0 }}>
+                <ModalBody className="modal-body">
+                    <div className='menu-div'>
+                        <h6>Print</h6>
+                        <Table className='mt-4' striped borderless size='sm'>
+                            <thead>
+                                <tr>
+                                    <th>
+                                    </th>
+                                    <th>
+                                        <div style={{ float: 'right' }}>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span style={{float:'left'}}>
+                                            Introduction Letter
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div style={{ float: 'right' }}>
+                                            <Printer className='menu' size='1.5em' onClick={''} />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span style={{float:'left'}}>
+                                            Rent Reminder
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div style={{ float: 'right' }}>
+                                            <Printer className='menu' size='1.5em' onClick={''} />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span style={{float:'left'}}>
+                                            Rent Incement
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div style={{ float: 'right' }}>
+                                            <Printer className='menu' size='1.5em' onClick={''} />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span style={{float:'left'}}>
+                                            Termination of Tenant
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div style={{ float: 'right' }}>
+                                            <Printer className='menu' size='1.5em' onClick={''} />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </Table>
                     </div>
                 </ModalBody>
             </Modal>

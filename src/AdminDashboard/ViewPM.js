@@ -146,10 +146,17 @@ export default function ViewPM() {
                   <option>Residential</option>
                 </select>
               </div>
-              <div className='select'>
                 <select>
                   <option>-select accommodation-</option>
-                  <option>Shop</option>
+                  <option>Duplex</option>
+                  <option>Bungalo</option>
+                  <option>Terrace</option>
+                  <option>Apartment</option>
+                  <option>Detached</option>
+                </select>
+              <div className='select'>
+                <select>
+                  <option>-select bedroom-</option>
                   <option>1 Bedroom</option>
                   <option>2 Bedrooms</option>
                   <option>3 Bedrroms</option>
@@ -202,7 +209,14 @@ export default function ViewPM() {
               <div className='select'>
                 <select>
                   <option>-select accommodation-</option>
-                  <option>Shop</option>
+                  <option>Duplex</option>
+                  <option>Bungalo</option>
+                  <option>Terrace</option>
+                  <option>Apartment</option>
+                  <option>Detached</option>
+                </select>
+                <select>
+                  <option>-select bedroom-</option>
                   <option>1 Bedroom</option>
                   <option>2 Bedrooms</option>
                   <option>3 Bedrroms</option>
@@ -255,7 +269,14 @@ export default function ViewPM() {
               <div className='select'>
                 <select>
                   <option>-select accommodation-</option>
-                  <option>Shop</option>
+                  <option>Duplex</option>
+                  <option>Bungalo</option>
+                  <option>Terrace</option>
+                  <option>Apartment</option>
+                  <option>Detached</option>
+                </select>
+                <select>
+                  <option>-select bedroom-</option>
                   <option>1 Bedroom</option>
                   <option>2 Bedrooms</option>
                   <option>3 Bedrroms</option>

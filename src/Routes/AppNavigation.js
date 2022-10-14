@@ -18,6 +18,13 @@ import OperatorPM from "../Operator/OperatorPM";
 import OperatorViewPM from "../Operator/OperatorViewPM";
 import OperatorViewBlock from "../Operator/OperatorViewBlock";
 import OperatorNotification from "../Operator/OperatorNotification";
+import OperatorProfile from "../Operator/OperatorProfile";
+import Profile from "../AdminDashboard/Profile";
+import ViewIntroductionLetter from "../Letters.js/ViewIntroductionLetter";
+import { IncrementLetter } from "../Letters.js/IncrementLetter";
+import ViewIncrementLetter from "../Letters.js/ViewIncrementLetter";
+import ViewTerminationLetter from "../Letters.js/ViewTerminationLetter";
+import ViewRentReminder from "../Letters.js/ViewRentReminder";
 
 function AppNavigation() {
 
@@ -68,7 +75,14 @@ function AppNavigation() {
                     path: 'admin/edit-pm',
                     element: <EditPM />
                 },
-
+                {
+                    path: 'admin/profile',
+                    element: <Profile />
+                },
+                {
+                    path: '/admin/notifications',
+                    element: <OperatorNotification />
+                },
                 ////////////////////////////////////
 
                 {
@@ -90,6 +104,23 @@ function AppNavigation() {
                 {
                     path: '/operator/notifications',
                     element: <OperatorNotification />
+                },
+                { path: '/operator/profile', element: <OperatorProfile /> },
+                {
+                    path: '/operator/introduction-letter',
+                    element: <ViewIntroductionLetter />
+                },
+                {
+                    path: '/operator/increment-letter',
+                    element: <ViewIncrementLetter />
+                },
+                {
+                    path: '/operator/termination-letter',
+                    element: <ViewTerminationLetter />
+                },
+                {
+                    path: '/operator/rent-reminder',
+                    element: <ViewRentReminder />
                 }
 
             ],

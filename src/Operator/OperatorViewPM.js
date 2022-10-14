@@ -148,7 +148,69 @@ export default function OperatorViewPM() {
                             <div className='select'>
                                 <select>
                                     <option>-select accommodation-</option>
-                                    <option>Shop</option>
+                                    <option>Duplex</option>
+                                    <option>Bungalo</option>
+                                    <option>Terrace</option>
+                                    <option>Apartment</option>
+                                    <option>Detached</option>
+                                </select>
+                            </div>
+                            <div className='select'>
+                                <select>
+                                    <option>-select bedroom-</option>
+                                    <option>1 Bedroom</option>
+                                    <option>2 Bedrooms</option>
+                                    <option>3 Bedrroms</option>
+                                    <option>4 Bedrooms</option>
+                                    <option>5 Bedrooms</option>
+                                    <option>6 Bedrooms</option>
+                                    <option>7 Bedrooms</option>
+                                </select>
+                            </div>
+                            <div className='select'>
+                                <select>
+                                    <option>-select duration-</option>
+                                    <option>1year</option>
+                                    <option>2years</option>
+                                    <option>3years</option>
+                                    <option>4years</option>
+                                    <option>5years</option>
+                                </select>
+                            </div>
+                            <input type='number' className='inputs' placeholder='Rent' />
+                            <input type='date' className='inputs' placeholder='' />
+                        </div>
+                        <div>
+                            <Button btnText={'Save'} onClick={toggle2} />
+                        </div>
+                    </div>
+                </ModalBody>
+            </Modal>
+            <Modal size="" isOpen={open3} toggle={toggle3} className="avail-cars" style={{ padding: 0 }}>
+                <ModalBody className="modal-body">
+                    <div className='menu-div'>
+                        <h6>Edit Tentant</h6>
+                        <div>
+                            <input type='text' className='inputs' placeholder='Tenant Full Name' />
+                            <input type='text' className='inputs' placeholder='Phone' />
+                            <div className='select'>
+                                <select>
+                                    <option>-select sex-</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                            <div className='select'>
+                                <select>
+                                    <option>-select purpose-</option>
+                                    <option>Commercial</option>
+                                    <option>Residential</option>
+                                </select>
+                            </div>
+                                
+                            <div className='select'>
+                                <select>
+                                    <option>-select bedroom-</option>
                                     <option>1 Bedroom</option>
                                     <option>2 Bedrooms</option>
                                     <option>3 Bedrroms</option>
@@ -200,61 +262,7 @@ export default function OperatorViewPM() {
                             </div>
                             <div className='select'>
                                 <select>
-                                    <option>-select accommodation-</option>
-                                    <option>Shop</option>
-                                    <option>1 Bedroom</option>
-                                    <option>2 Bedrooms</option>
-                                    <option>3 Bedrroms</option>
-                                    <option>4 Bedrooms</option>
-                                    <option>5 Bedrooms</option>
-                                    <option>6 Bedrooms</option>
-                                    <option>7 Bedrooms</option>
-                                </select>
-                            </div>
-                            <div className='select'>
-                                <select>
-                                    <option>-select duration-</option>
-                                    <option>1year</option>
-                                    <option>2years</option>
-                                    <option>3years</option>
-                                    <option>4years</option>
-                                    <option>5years</option>
-                                </select>
-                            </div>
-                            <input type='number' className='inputs' placeholder='Rent' />
-                            <input type='date' className='inputs' placeholder='' />
-                        </div>
-                        <div>
-                            <Button btnText={'Save'} onClick={toggle2} />
-                        </div>
-                    </div>
-                </ModalBody>
-            </Modal>
-            <Modal size="" isOpen={open3} toggle={toggle3} className="avail-cars" style={{ padding: 0 }}>
-                <ModalBody className="modal-body">
-                    <div className='menu-div'>
-                        <h6>Edit Tentant</h6>
-                        <div>
-                            <input type='text' className='inputs' placeholder='Tenant Full Name' />
-                            <input type='text' className='inputs' placeholder='Phone' />
-                            <div className='select'>
-                                <select>
-                                    <option>-select sex-</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                </select>
-                            </div>
-                            <div className='select'>
-                                <select>
-                                    <option>-select purpose-</option>
-                                    <option>Commercial</option>
-                                    <option>Residential</option>
-                                </select>
-                            </div>
-                            <div className='select'>
-                                <select>
-                                    <option>-select accommodation-</option>
-                                    <option>Shop</option>
+                                    <option>-select bedroom-</option>
                                     <option>1 Bedroom</option>
                                     <option>2 Bedrooms</option>
                                     <option>3 Bedrroms</option>
