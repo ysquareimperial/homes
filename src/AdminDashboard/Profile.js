@@ -1,9 +1,8 @@
 import React from 'react'
-import { Card, Col, Modal, ModalBody, Row } from 'reactstrap'
+import { Card, Col, Modal, Row } from 'reactstrap'
 import Button from '../AdminDashboard/Button'
 import profile from '../Images/profile.jpg'
 import { useState } from 'react'
-import { AiOutlineMenu } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 export default function Profile() {
     const [open, setOpen] = useState(false)

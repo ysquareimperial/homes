@@ -129,6 +129,7 @@ export default function OperatorViewPM() {
                     <div className='menu-div'>
                         <h6>Add Tentant</h6>
                         <div>
+                            <input type='text' className='inputs' placeholder='Title' />
                             <input type='text' className='inputs' placeholder='Tenant Full Name' />
                             <input type='text' className='inputs' placeholder='Phone' />
                             <div className='select'>
@@ -191,6 +192,7 @@ export default function OperatorViewPM() {
                     <div className='menu-div'>
                         <h6>Edit Tentant</h6>
                         <div>
+                            <input type='text' className='inputs' placeholder='Title' />
                             <input type='text' className='inputs' placeholder='Tenant Full Name' />
                             <input type='text' className='inputs' placeholder='Phone' />
                             <div className='select'>
@@ -207,7 +209,7 @@ export default function OperatorViewPM() {
                                     <option>Residential</option>
                                 </select>
                             </div>
-                                
+
                             <div className='select'>
                                 <select>
                                     <option>-select bedroom-</option>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Edit, MessageCircle, Plus, Printer, Trash } from 'react-feather';
+import { Edit, MessageCircle, Printer, Trash } from 'react-feather';
 // import { useNavigate } from 'react-router-dom';
 import { Card, Col, Modal, ModalBody, Row, Table } from 'reactstrap'
 import Button from './Button'
@@ -160,6 +160,7 @@ export default function ViewBlock() {
                     <div className='menu-div'>
                         <h6>Edit Tentant</h6>
                         <div>
+                        <input type='text' className='inputs' placeholder='Title' />
                             <input type='text' className='inputs' placeholder='Tenant Full Name' />
                             <input type='text' className='inputs' placeholder='Phone' />
                             <div className='select'>

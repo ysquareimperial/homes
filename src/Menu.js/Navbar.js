@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaBell } from 'react-icons/fa'
-import { useLoaderData, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Col, Row } from 'reactstrap'
 import logo from '../Images/HomesLogo.jpg'
 import user from '../Images/profile.jpg'

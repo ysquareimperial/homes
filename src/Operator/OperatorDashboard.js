@@ -1,16 +1,13 @@
 import React from 'react'
-import { Row, Col, Card, CardHeader, CardBody } from 'reactstrap'
+import { Row, Col, Card } from 'reactstrap'
 import { BsClockHistory, BsClock } from 'react-icons/bs'
 import { MdMapsHomeWork } from 'react-icons/md'
-import { Circle, PieChart, Users } from 'react-feather'
 import { ImUsers } from 'react-icons/im'
 import './Chart.css'
-import Chart from './Chart'
 import DoughnutChart from './Doughnut'
 import BarChart from './BarChart'
 import TenantsByAccommodation from './TenantsByAccommodation'
 import { FaCalendar, FaUser } from 'react-icons/fa'
-import Marquee from "react-fast-marquee";
 export default function OperatorDashboard() {
   return (
     <div className='mt-4'>

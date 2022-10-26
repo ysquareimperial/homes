@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Edit, MessageCircle, Plus, Printer, Trash } from 'react-feather';
+import { Edit, MessageCircle, Printer, Trash } from 'react-feather';
+import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 import { Card, Col, Modal, ModalBody, Row, Table } from 'reactstrap'
 import Button from '../AdminDashboard/Button';
 
 export default function OperatorViewBlock() {
-
+    const navigate = useNavigate()
     const [open, setOpen] = useState(false);
     const toggle = () => {
         setOpen(!open);
@@ -67,7 +68,6 @@ export default function OperatorViewBlock() {
                         <p className='card-title'>PM 1/Block A/Tentants List</p>
                     </Col>
                     <Col md={6}>
-                        {/* <Button btnText='Edit PM' icon={<FaPen />} style={{ float: 'right' }} onClick={() => navigate('')} /> */}
                     </Col>
                 </Row>
 
@@ -160,6 +160,7 @@ export default function OperatorViewBlock() {
                     <div className='menu-div'>
                         <h6>Edit Tentant</h6>
                         <div>
+                            <input type='text' className='inputs' placeholder='Title' />
                             <input type='text' className='inputs' placeholder='Tenant Full Name' />
                             <input type='text' className='inputs' placeholder='Phone' />
                             <div className='select'>
@@ -256,9 +257,9 @@ export default function OperatorViewBlock() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr onClick={() => navigate('/operator/introduction-letter')}>
                                     <td>
-                                        <span style={{float:'left'}}>
+                                        <span style={{ float: 'left' }}>
                                             Introduction Letter
                                         </span>
                                     </td>
@@ -268,9 +269,9 @@ export default function OperatorViewBlock() {
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr onClick={() => navigate('/operator/rent-reminder')}>
                                     <td>
-                                        <span style={{float:'left'}}>
+                                        <span style={{ float: 'left' }}>
                                             Rent Reminder
                                         </span>
                                     </td>
@@ -280,9 +281,9 @@ export default function OperatorViewBlock() {
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr onClick={() => navigate('/operator/increment-letter')}>
                                     <td>
-                                        <span style={{float:'left'}}>
+                                        <span style={{ float: 'left' }}>
                                             Rent Incement
                                         </span>
                                     </td>
@@ -292,9 +293,9 @@ export default function OperatorViewBlock() {
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr onClick={() => navigate('/operator/termination-letter')}>
                                     <td>
-                                        <span style={{float:'left'}}>
+                                        <span style={{ float: 'left' }}>
                                             Termination of Tenant
                                         </span>
                                     </td>

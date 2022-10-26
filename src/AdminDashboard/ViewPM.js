@@ -130,6 +130,7 @@ export default function ViewPM() {
           <div className='menu-div'>
             <h6>Add Tentant</h6>
             <div>
+              <input type='text' className='inputs' placeholder='Title' />
               <input type='text' className='inputs' placeholder='Tenant Full Name' />
               <input type='text' className='inputs' placeholder='Phone' />
               <div className='select'>
@@ -146,14 +147,14 @@ export default function ViewPM() {
                   <option>Residential</option>
                 </select>
               </div>
-                <select>
-                  <option>-select accommodation-</option>
-                  <option>Duplex</option>
-                  <option>Bungalo</option>
-                  <option>Terrace</option>
-                  <option>Apartment</option>
-                  <option>Detached</option>
-                </select>
+              <select>
+                <option>-select accommodation-</option>
+                <option>Duplex</option>
+                <option>Bungalo</option>
+                <option>Terrace</option>
+                <option>Apartment</option>
+                <option>Detached</option>
+              </select>
               <div className='select'>
                 <select>
                   <option>-select bedroom-</option>
