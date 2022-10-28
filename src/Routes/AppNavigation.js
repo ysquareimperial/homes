@@ -82,6 +82,22 @@ function AppNavigation() {
                     path: '/admin/notifications',
                     element: <OperatorNotification />
                 },
+                {
+                    path: '/admin/introduction-letter',
+                    element: <ViewIntroductionLetter />
+                },
+                {
+                    path: '/admin/increment-letter',
+                    element: <ViewIncrementLetter />
+                },
+                {
+                    path: '/admin/termination-letter',
+                    element: <ViewTerminationLetter />
+                },
+                {
+                    path: '/admin/rent-reminder',
+                    element: <ViewRentReminder />
+                },
                 ////////////////////////////////////
 
                 {

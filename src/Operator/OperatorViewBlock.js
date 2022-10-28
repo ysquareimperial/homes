@@ -296,7 +296,7 @@ export default function OperatorViewBlock() {
                                 <tr onClick={() => navigate('/operator/termination-letter')}>
                                     <td>
                                         <span style={{ float: 'left' }}>
-                                            Termination of Tenant
+                                            Termination of Tenancy
                                         </span>
                                     </td>
                                     <td>

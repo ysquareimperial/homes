@@ -3,8 +3,11 @@ import { Edit, MessageCircle, Printer, Trash } from 'react-feather';
 // import { useNavigate } from 'react-router-dom';
 import { Card, Col, Modal, ModalBody, Row, Table } from 'reactstrap'
 import Button from './Button'
+import {useNavigate} from 'react-router-dom'
 
 export default function ViewBlock() {
+
+    const navigate = useNavigate()
 
     const [open, setOpen] = useState(false);
     const toggle = () => {
@@ -160,7 +163,7 @@ export default function ViewBlock() {
                     <div className='menu-div'>
                         <h6>Edit Tentant</h6>
                         <div>
-                        <input type='text' className='inputs' placeholder='Title' />
+                            <input type='text' className='inputs' placeholder='Title' />
                             <input type='text' className='inputs' placeholder='Tenant Full Name' />
                             <input type='text' className='inputs' placeholder='Phone' />
                             <div className='select'>
@@ -257,9 +260,9 @@ export default function ViewBlock() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr onClick={() => navigate('/admin/introduction-letter')}>
                                     <td>
-                                        <span style={{float:'left'}}>
+                                        <span style={{ float: 'left' }}>
                                             Introduction Letter
                                         </span>
                                     </td>
@@ -269,9 +272,9 @@ export default function ViewBlock() {
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr onClick={() => navigate('/admin/rent-reminder')}>
                                     <td>
-                                        <span style={{float:'left'}}>
+                                        <span style={{ float: 'left' }}>
                                             Rent Reminder
                                         </span>
                                     </td>
@@ -281,9 +284,9 @@ export default function ViewBlock() {
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr onClick={() => navigate('/admin/increment-letter')}>
                                     <td>
-                                        <span style={{float:'left'}}>
+                                        <span style={{ float: 'left' }}>
                                             Rent Incement
                                         </span>
                                     </td>
@@ -293,10 +296,10 @@ export default function ViewBlock() {
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr onClick={() => navigate('/admin/termination-letter')}>
                                     <td>
-                                        <span style={{float:'left'}}>
-                                            Termination of Tenant
+                                        <span style={{ float: 'left' }}>
+                                            Termination of Tenancy
                                         </span>
                                     </td>
                                     <td>
