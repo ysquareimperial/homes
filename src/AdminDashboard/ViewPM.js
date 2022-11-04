@@ -62,7 +62,9 @@ export default function ViewPM() {
             <p className='pm-data'><span className='sp'>Landloard/Lady:</span> Habu Yakasai</p>
             <p className='pm-data'><span className='sp'>Phone:</span> +234 090 18661696</p>
             {/* <Button btnText='Add Block' icon={<FaPen />} onClick={() => navigate('')} /> */}
+            <div className='mt-3'>
             <button className='block-btn mt-2' onClick={toggle1}>Add Block</button>
+            </div>
           </Col>
           <Col md={5}></Col>
         </Row>
