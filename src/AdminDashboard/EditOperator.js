@@ -5,7 +5,7 @@ import { Card, Col, Row } from 'reactstrap'
 import Button from './Button'
 
 export default function EditOperator() {
-  const navigate = useNavigate()
+    const navigate = useNavigate()
 
     return (
         <div className='mt-4'>
@@ -34,7 +34,9 @@ export default function EditOperator() {
                         </div>
                     </Col>
                 </Row>
-                <Button btnText={'Save'} icon={<FaSave/>} onClick={() => navigate('/admin/operators')}/>
+                <div className='mt-3'>
+                    <Button btnText={'Save'} icon={<FaSave />} onClick={() => navigate('/admin/operators')} />
+                </div>
             </Card>
         </div>
     )

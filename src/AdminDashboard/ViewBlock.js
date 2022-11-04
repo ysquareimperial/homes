@@ -3,7 +3,7 @@ import { Edit, MessageCircle, Printer, Trash } from 'react-feather';
 // import { useNavigate } from 'react-router-dom';
 import { Card, Col, Modal, ModalBody, Row, Table } from 'reactstrap'
 import Button from './Button'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function ViewBlock() {
 
@@ -75,7 +75,7 @@ export default function ViewBlock() {
                 </Row>
 
 
-                <Table className='mt-4' striped borderless size='sm'>
+                <Table className='mt-4' striped responsive borderless size='sm'>
                     <thead>
                         <tr>
                             <th>
@@ -189,6 +189,8 @@ export default function ViewBlock() {
                                     <option>Apartment</option>
                                     <option>Detached</option>
                                 </select>
+                            </div>
+                            <div className='select'>
                                 <select>
                                     <option>-select bedroom-</option>
                                     <option>1 Bedroom</option>
@@ -213,7 +215,7 @@ export default function ViewBlock() {
                             <input type='number' className='inputs' placeholder='Rent' />
                             <input type='date' className='inputs' placeholder='' />
                         </div>
-                        <div>
+                        <div className='mt-3'>
                             <Button btnText={'Save'} onClick={toggle3} />
                         </div>
                     </div>

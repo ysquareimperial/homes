@@ -43,16 +43,16 @@ export default function ViewPM() {
     <div className='mt-4'>
       <Card className='admin-card p-3'>
         <Row>
-          <Col md={6}>
+          <Col lg={6} md={6} sm={6} xs={6}>
             <p className='card-title'>PM Details</p>
           </Col>
-          <Col md={6}>
+          <Col lg={6} md={6} sm={6} xs={6}>
             <Button btnText='Edit PM' icon={<FaPen />} style={{ float: 'right' }} onClick={() => navigate('/admin/edit-pm')} />
           </Col>
         </Row>
         <Row>
           <Col md={2}>
-            <div className='pm'>
+            <div className='pm mt-2'>
               <p className='pmsize'>PM 1</p>
             </div>
           </Col>
@@ -62,12 +62,12 @@ export default function ViewPM() {
             <p className='pm-data'><span className='sp'>Landloard/Lady:</span> Habu Yakasai</p>
             <p className='pm-data'><span className='sp'>Phone:</span> +234 090 18661696</p>
             {/* <Button btnText='Add Block' icon={<FaPen />} onClick={() => navigate('')} /> */}
-            <button className='block-btn' onClick={toggle1}>Add Block</button>
+            <button className='block-btn mt-2' onClick={toggle1}>Add Block</button>
           </Col>
           <Col md={5}></Col>
         </Row>
 
-        <Table className='mt-3' striped borderless size='sm'>
+        <Table className='mt-3' striped responsive borderless size='sm'>
           <thead>
             <tr>
               <th>
@@ -147,6 +147,7 @@ export default function ViewPM() {
                   <option>Residential</option>
                 </select>
               </div>
+              <div className='select'>
               <select>
                 <option>-select accommodation-</option>
                 <option>Duplex</option>
@@ -155,6 +156,7 @@ export default function ViewPM() {
                 <option>Apartment</option>
                 <option>Detached</option>
               </select>
+              </div>
               <div className='select'>
                 <select>
                   <option>-select bedroom-</option>
@@ -180,7 +182,7 @@ export default function ViewPM() {
               <input type='number' className='inputs' placeholder='Rent' />
               <input type='date' className='inputs' placeholder='' />
             </div>
-            <div>
+            <div className='mt-3'>
               <Button btnText={'Save'} onClick={toggle2} />
             </div>
           </div>
@@ -216,6 +218,8 @@ export default function ViewPM() {
                   <option>Apartment</option>
                   <option>Detached</option>
                 </select>
+              </div>
+              <div className='select'>
                 <select>
                   <option>-select bedroom-</option>
                   <option>1 Bedroom</option>
@@ -240,7 +244,7 @@ export default function ViewPM() {
               <input type='number' className='inputs' placeholder='Rent' />
               <input type='date' className='inputs' placeholder='' />
             </div>
-            <div>
+            <div className='mt-3'>
               <Button btnText={'Save'} onClick={toggle2} />
             </div>
           </div>
@@ -276,6 +280,8 @@ export default function ViewPM() {
                   <option>Apartment</option>
                   <option>Detached</option>
                 </select>
+              </div>
+              <div className='select'>
                 <select>
                   <option>-select bedroom-</option>
                   <option>1 Bedroom</option>
@@ -300,7 +306,7 @@ export default function ViewPM() {
               <input type='number' className='inputs' placeholder='Rent' />
               <input type='date' className='inputs' placeholder='' />
             </div>
-            <div>
+            <div className='mt-3'>
               <Button btnText={'Save'} onClick={toggle2} />
             </div>
           </div>

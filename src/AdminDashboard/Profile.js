@@ -13,7 +13,7 @@ export default function Profile() {
     return (
         <div className='mt-4'>
 
-            <Card className='admin-card p-3'>
+            <Card className='admin-card admin-card-profile p-3'>
                 <Row>
                     <Col md={6}>
                         <p className='card-title mb-3'>Admin Profile</p>

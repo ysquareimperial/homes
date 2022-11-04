@@ -26,15 +26,15 @@ export default function Operators() {
     <div className='mt-4'>
       <Card className='admin-card p-3'>
         <Row>
-          <Col md={6}>
+          <Col lg={5} md={5} sm={5} xs={5}>
             <p className='card-title'>Operators</p>
           </Col>
-          <Col md={6}>
-            <Button btnText='Add Operator' icon={<FaPlus />} style={{float:'right'}} onClick={() => navigate('/admin/create-portfolio')} />
+          <Col lg={7} md={7} sm={7} xs={7}>
+            <Button btnText='Add Operator' icon={<FaPlus />} style={{ float: 'right' }} onClick={() => navigate('/admin/create-portfolio')} />
           </Col>
         </Row>
 
-        <Table className='mt-3' striped borderless size='sm'>
+        <Table className='mt-3' striped responsive borderless size='sm'>
           <thead>
             <tr>
               <th>
@@ -90,15 +90,15 @@ export default function Operators() {
           </tbody>
         </Table>
 
-        <Modal size="sm" isOpen={open1} toggle={toggle1} className="avail-cars" style={{padding:0}}>
+        <Modal size="sm" isOpen={open1} toggle={toggle1} className="avail-cars" style={{ padding: 0 }}>
           <ModalBody className="modal-body">
             <div className='menu-div'>
               {/* <p className='p-menu'>View</p> */}
               {/* <hr style={{width:'100%'}}/> */}
-              <p className='p-menu' onClick={()=>navigate('/admin/edit-operator')}>Edit</p>
-              <hr style={{width:'100%'}}/>
+              <p className='p-menu' onClick={() => navigate('/admin/edit-operator')}>Edit</p>
+              <hr style={{ width: '100%' }} />
               {/* <p className='p-menu'>Edit</p> */}
-              <p className='p-menu' style={{color:'red'}}>Delete</p>
+              <p className='p-menu' style={{ color: 'red' }}>Delete</p>
             </div>
           </ModalBody>
         </Modal>

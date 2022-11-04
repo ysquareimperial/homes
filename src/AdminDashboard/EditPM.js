@@ -37,7 +37,9 @@ export default function EditPM() {
                         </div>
                     </Col>
                 </Row>
-                <Button btnText={'Save'} icon={<FaSave />} onClick={() => navigate('/admin/PM')} />
+                <div className='mt-3'>
+                    <Button btnText={'Save'} icon={<FaSave />} onClick={() => navigate('/admin/PM')} />
+                </div>
             </Card>
         </div>
     )

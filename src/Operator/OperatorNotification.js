@@ -39,42 +39,42 @@ export default function OperatorNotification() {
                     <div className='' style={{ fontSize: 12 }}>
                         <Card className='not_card shadow-sm p-2 m-1'>
                             <Row>
-                                <Col md={2} className=''>
+                                <Col lg={2} md={2} sm={2} xs={2} className=''>
                                     <MdMapsHomeWork className='not_icon' size='1em' color='grey' />
                                     {' '}
                                     {item.pm}
                                     <div className='not_data'>
                                     </div>
                                 </Col>
-                                <Col md={3}>
+                                <Col lg={3} md={3} sm={3} xs={3}>
                                     <div className='not_data'>
                                         <FaUser className='not_icon' size='1em' color='grey' />
                                         {' '}
                                         {item.name}
                                     </div>
                                 </Col>
-                                <Col md={2}>
+                                <Col lg={2} md={2} sm={2} xs={2}>
                                     <div className='not_data'>
                                         <FaPhone className='not_icon' size='1em' color='grey' />
                                         {' '}
                                         {item.phone}
                                     </div>
                                 </Col>
-                                <Col md={2}>
+                                <Col lg={2} md={2} sm={2} xs={2}>
                                     <div className='not_data'>
                                         <FaMoneyBill className='not_icon' size='1em' color='grey' />
                                         {' '}
                                         {item.rent}
                                     </div>
                                 </Col>
-                                <Col md={2}>
+                                <Col lg={2} md={2} sm={2} xs={2}>
                                     <div className='not_data'>
 
                                         <FaCalendar className='not_icon' size='1em' color='grey' />
                                         {' '}{item.expiryDate}
                                     </div>
                                 </Col>
-                                <Col md={1}>
+                                <Col lg={1} md={1} sm={1} xs={1}>
                                     <div className='not_data'>
 
                                         <FaTrash className='not_icon' size='1em' color='grey' style={{ float: 'right', marginTop: '' }} />

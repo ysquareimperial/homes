@@ -29,10 +29,10 @@ export default function PM() {
         <div className='mt-4'>
             <Card className='admin-card p-3'>
                 <Row>
-                    <Col md={6}>
+                    <Col lg={6} md={6} sm={6} xs={6}>
                         <p className='card-title'>PM's</p>
                     </Col>
-                    <Col md={6}>
+                    <Col lg={6} md={6} sm={6} xs={6}>
                         <Button btnText='Add PM' icon={<FaPlus />} style={{ float: 'right' }} onClick={() => navigate('/admin/create-pm')} />
                     </Col>
                 </Row>
@@ -49,7 +49,7 @@ export default function PM() {
                         {/* <MdFilterList/> */}
                     </Col>
                 </Row>
-                <Table className='mt-3' striped borderless size='sm'>
+                <Table className='mt-3' striped borderless responsive size='sm'>
                     <thead>
                         <tr>
                             <th>

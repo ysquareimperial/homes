@@ -62,7 +62,6 @@
 .left-login-div {
   background-color: rgb(34, 64, 41) rgb(25, 78, 0);
   height: 100vh;
-
 }
 
 .right-login-div {
@@ -357,7 +356,7 @@ textarea:focus {
   border: 1px solid rgb(219, 219, 219) !important;
   border-radius: 10px;
 }
-.ch{
+.ch {
   height: 45vh !important;
 }
 /* .dashboard_icon_div1{
@@ -434,52 +433,123 @@ background-color: purple;
 .dashboard_card_details {
   margin-top: 7px;
 }
-.tenants_by_list{
+.tenants_by_list {
   margin: 0;
 }
-.d_text_m{
+.d_text_m {
   margin: 0;
   display: inline;
 }
-.tnt_cnt{
+.tnt_cnt {
   margin: 0;
   padding: 5px;
   border-bottom: 1px solid rgb(218, 218, 218);
 }
-.tnt_cnt:hover{
-  background-color:rgb(236, 236, 236);
+.tnt_cnt:hover {
+  background-color: rgb(236, 236, 236);
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
-.profile-image{
+.profile-image {
   width: 150px;
   border-radius: 50%;
 }
 
-.profile-div{
+.profile-div {
   position: relative;
   z-index: 1;
   margin-left: 20px;
 }
-.profile-data-div{
+.profile-data-div {
   position: relative;
   background-color: rgb(250, 250, 250);
   border: 1px solid rgb(206, 206, 206);
   /* height: 20vh; */
-  top:-70px;
+  top: -70px;
   border-radius: 20px;
   height: 35vh;
   /* z-inde: -2; */
 }
 
-.profile-data{
+.profile-data {
   position: relative;
   background-color: rgb(250, 250, 250);
   border: 1px solid rgb(206, 206, 206);
   /* height: 20vh; */
-  top:80px;
+  top: 80px;
   border-radius: 20px;
   height: 35vh;
   /* z-inde: -2; */
+}
+
+.btnbtn{
+  /* margin-top: 10px; */
+}
+
+@media only screen and (max-width: 768px) {
+  .dashboard_card {
+    margin-bottom: 10px;
+  }
+  .marq_el {
+    font-size: 12px;
+  }
+  .not_icon {
+    width: 15px;
+    height: 15px;
+  }
+  .sidebarr {
+    display: none;
+  }
+  .navb {
+    display: none !important;
+  }
+  .mobile_navbar {
+    background-color: rgb(186, 207, 68);
+  }
+  .logo {
+    width: 25%;
+  }
+  .no {
+    display: none;
+  }
+  .profile-data-div {
+    height: 30vh !important;
+  }
+  .profile-data {
+    height: 55vh !important;
+  }
+  .profile-data {
+    position: relative;
+    background-color: rgb(250, 250, 250);
+    border: 1px solid rgb(206, 206, 206);
+    /* height: 20vh; */
+    top: -50px;
+    border-radius: 20px;
+    height: 35vh;
+    /* z-inde: -2; */
+  }
+  .admin-card-profile {
+    height: auto !important;
+  }
+  .card-title {
+    color: rgb(34, 64, 41);
+    font-weight: bold;
+    font-size: 18px;
+  }
+  th{
+    font-weight: lighter !important;
+  }
+  .btnbtn{
+    /* margin-top: 10px; */
+  }
+  .searchinput{
+    width: 100%;
+  }
+  
+}
+@media only screen and (min-width: 768px) {
+  .mobile_navbar {
+    display: none !important;
+  }
 }
