@@ -23,18 +23,18 @@ export default function OperatorViewPM() {
         {
 
             blockCode: 'Block A',
-            noOfTentants: 10,
+            noOfTenants: 10,
 
         },
         {
 
             blockCode: 'Block B',
-            noOfTentants: 10,
+            noOfTenants: 10,
 
         }, {
 
             blockCode: 'Block C',
-            noOfTentants: 10,
+            noOfTenants: 10,
 
         }
     ]
@@ -57,7 +57,7 @@ export default function OperatorViewPM() {
                     </Col>
                     <Col md={5}>
                         <p className='pm-data'><span className='sp'>Address:</span> 10</p>
-                        <p className='pm-data'><span className='sp'>No of Tentants:</span> 10</p>
+                        <p className='pm-data'><span className='sp'>No of Tenants:</span> 10</p>
                         <p className='pm-data'><span className='sp'>Landloard/Lady:</span> Habu Yakasai</p>
                         <p className='pm-data'><span className='sp'>Phone:</span> +234 090 18661696</p>
                         {/* <Button btnText='Add Block' icon={<FaPen />} onClick={() => navigate('')} /> */}
@@ -76,7 +76,7 @@ export default function OperatorViewPM() {
                                 Blocks
                             </th>
                             <th>
-                                Tentants
+                                Tenants
                             </th>
                             <th>
                                 <div style={{ float: 'right', marginRight: '' }}>
@@ -95,7 +95,7 @@ export default function OperatorViewPM() {
                                     {item.blockCode}
                                 </td>
                                 <td>
-                                    {item.noOfTentants}
+                                    {item.noOfTenants}
                                 </td>
                                 <td>
                                     <div style={{ float: 'right' }}>
@@ -127,7 +127,7 @@ export default function OperatorViewPM() {
             <Modal size="" isOpen={open2} toggle={toggle2} className="avail-cars" style={{ padding: 0 }}>
                 <ModalBody className="modal-body">
                     <div className='menu-div'>
-                        <h6>Add Tentant</h6>
+                        <h6>Add Tenant</h6>
                         <div>
                             <input type='text' className='inputs' placeholder='Title' />
                             <input type='text' className='inputs' placeholder='Tenant Full Name' />
@@ -190,7 +190,7 @@ export default function OperatorViewPM() {
             <Modal size="" isOpen={open3} toggle={toggle3} className="avail-cars" style={{ padding: 0 }}>
                 <ModalBody className="modal-body">
                     <div className='menu-div'>
-                        <h6>Edit Tentant</h6>
+                        <h6>Edit Tenant</h6>
                         <div>
                             <input type='text' className='inputs' placeholder='Title' />
                             <input type='text' className='inputs' placeholder='Tenant Full Name' />
@@ -244,7 +244,7 @@ export default function OperatorViewPM() {
             <Modal size="" isOpen={open3} toggle={toggle3} className="avail-cars" style={{ padding: 0 }}>
                 <ModalBody className="modal-body">
                     <div className='menu-div'>
-                        <h6>Edit Tentant</h6>
+                        <h6>Edit Tenant</h6>
                         <div>
                             <input type='text' className='inputs' placeholder='Tenant Full Name' />
                             <input type='text' className='inputs' placeholder='Phone' />

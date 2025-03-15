@@ -32,12 +32,12 @@ const data = {
     {
       label: 'Tenants In',
       data: [1, 2, 3, 4, 5, 6, 7],
-      backgroundColor: 'rgba(34, 64, 41, 0.6)',
+      backgroundColor: 'rgba(190, 190, 190, 0.6)',
     },
     {
       label: 'Tenants Out',
       data: [1, 2, 3, 4, 5, 6, 7],
-      backgroundColor: 'rgba(186, 207, 68, 0.6)',
+      backgroundColor: 'rgba(104, 104, 104, 0.6)',
     },
   ],
   borderColor: [

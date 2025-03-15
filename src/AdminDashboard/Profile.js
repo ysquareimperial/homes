@@ -16,7 +16,7 @@ export default function Profile() {
             <Card className='admin-card admin-card-profile p-3'>
                 <Row>
                     <Col md={6}>
-                        <p className='card-title mb-3'>Admin Profile</p>
+                        <p className='card-title mb-3'>Admin profile</p>
                     </Col>
                     <Col md={6}>
                         {/* <Button btnText='Add PM' icon={<FaPlus />} style={{ float: 'right' }} onClick={() => navigate('/admin/create-pm')} /> */}
@@ -41,7 +41,7 @@ export default function Profile() {
                             </Row>
                         </div>
                     </Col>
-                    <Col md={6}>
+                    {/* <Col md={6}>
                         <div className='profile-data p-4' style={{ height: '60vh' }}>
                             <Row className=''>
                                 <p style={{ fontWeight: 'bold', fontSize: '20px', margin: 0 }}>
@@ -65,7 +65,7 @@ export default function Profile() {
                                 <Button btnText={'Save'} onClick={openModal} />
                             </Row>
                         </div>
-                    </Col>
+                    </Col> */}
                 </Row>
             </Card>
             <Modal size='sm' isOpen={open} className=''>

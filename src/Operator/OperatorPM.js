@@ -17,7 +17,7 @@ export default function OperatorPM() {
             lastName: 'Yakasai',
             phone: '+234 901866169',
             PM: 12,
-            noOfTentants: 10,
+            noOfTenants: 10,
             PMAddress: 'No 108, Yakasai, KMC, Kano',
             assignedTo: 'Habu Yakasai'
         }
@@ -56,7 +56,7 @@ export default function OperatorPM() {
                                 PM
                             </th>
                             <th>
-                                No of Tentants
+                                No of Tenants
                             </th>
                             <th>
                                 PM Address
@@ -83,7 +83,7 @@ export default function OperatorPM() {
                                     {item.PM}
                                 </td>
                                 <td>
-                                    {item.noOfTentants}
+                                    {item.noOfTenants}
                                 </td>
                                 <td>
                                     {item.PMAddress}

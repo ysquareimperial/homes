@@ -68,7 +68,7 @@ export default function OperatorDashboard() {
                 <div className='dashboard_card_details'>
                   <div>
                     <p className='d_count'>122</p>
-                    <p className='d_text'>PM</p>
+                    <p className='d_text'>Properties</p>
                   </div>
                 </div>
               </Col>
@@ -87,7 +87,7 @@ export default function OperatorDashboard() {
               </Col>
               <Col lg={9} md={9} sm={9} xs={9}>
                 <p className='d_count'>412</p>
-                <p className='d_text'>Tentants</p>
+                <p className='d_text'>Tenants</p>
               </Col>
             </Row>
           </Card>
@@ -125,7 +125,7 @@ export default function OperatorDashboard() {
         </Col>
         <Col md={3}>
           <Card className='dashboard_card ch p-3 mt-4 shadow-sm'>
-            <p className='d_text text-center'>Tentants by gender</p>
+            <p className='d_text text-center'>Tenants by gender</p>
             <hr></hr>
             <Row>
               <Col lg={2} md={2} sm={2} xs={2}></Col>

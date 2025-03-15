@@ -4,7 +4,7 @@ import '../Styles/Styles.css'
 export default function TenantsByAccommodation() {
     return (
         <div>
-            <p className='d_text'>Tentants by gender</p>
+            <p className='d_text'>Tenants by gender</p>
             <hr></hr>
             <Row>
                 <Col md={12}>

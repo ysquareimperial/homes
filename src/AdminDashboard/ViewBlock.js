@@ -67,7 +67,7 @@ export default function ViewBlock() {
             <Card className='admin-card p-3'>
                 <Row>
                     <Col md={6}>
-                        <p className='card-title'>PM 1/Block A/Tentants List</p>
+                        <p className='card-title'>Property name/Block A/Tenants List</p>
                     </Col>
                     <Col md={6}>
                         {/* <Button btnText='Edit PM' icon={<FaPen />} style={{ float: 'right' }} onClick={() => navigate('')} /> */}
@@ -82,7 +82,7 @@ export default function ViewBlock() {
                                 S/N
                             </th>
                             <th>
-                                Tentants
+                                Tenants
                             </th>
                             <th>
                                 Phone
@@ -161,7 +161,7 @@ export default function ViewBlock() {
             <Modal size="" isOpen={open3} toggle={toggle3} className="avail-cars" style={{ padding: 0 }}>
                 <ModalBody className="modal-body">
                     <div className='menu-div'>
-                        <h6>Edit Tentant</h6>
+                        <h6>Edit Tenant</h6>
                         <div>
                             <input type='text' className='inputs' placeholder='Title' />
                             <input type='text' className='inputs' placeholder='Tenant Full Name' />
@@ -225,7 +225,7 @@ export default function ViewBlock() {
             <Modal size="sm" isOpen={open} toggle={toggle} className="avail-cars" style={{ padding: 0 }}>
                 <ModalBody className="modal-body">
                     <div className='menu-div'>
-                        <h6>Delete Tentant</h6>
+                        <h6>Delete Tenant</h6>
                         <p className='m-0'>Are you sure you want to delete this tenant?</p>
                         <div>
                             <Button btnText={'Delete'} onClick={toggle} />
