@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Eye, PlusSquare } from "react-feather";
 import { FaPen } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Card, Col, Modal, ModalBody, Row, Table } from "reactstrap";
 import Button from "./Button";
+import { useQuery } from "../components/helpers";
+import axios from "axios";
 
 export default function ViewPM() {
+  const getInitials = (name) => {
+    const words = name.trim().split(" ");
+    return words.length > 1
+      ? `${words[0][0]}${words[1][0]}` // First character of the first two words
+      : words[0][0]; // First character if there's only one word
+  };
+  const query = useQuery();
+  const propertyId = query.get(`id`);
   const [open1, setOpen1] = useState(false);
   const toggle1 = () => {
     setOpen1(!open1);
@@ -19,6 +29,41 @@ export default function ViewPM() {
     setOpen3(!open3);
   };
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [property, setProperty] = useState([]);
+
+  const token = localStorage.getItem("access_token");
+  const fetchProperty = () => {
+    setLoading(true);
+    if (!token) {
+      console.error("No access token found");
+      setLoading(false);
+      return;
+    }
+
+    axios
+      .get(`https://projectestate.onrender.com/api/properties/${propertyId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        // params: {
+        //   search: query, // Include the search query as a parameter
+        // },
+      })
+      .then((response) => {
+        setLoading(false);
+        setProperty(response?.data);
+        console.log(response);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log("error fetching data", err);
+      });
+  };
+
+  useEffect(() => {
+    fetchProperty();
+  }, [token]);
 
   const operatorsData = [
     {
@@ -36,35 +81,40 @@ export default function ViewPM() {
   ];
   return (
     <div className="mt-4">
-      <Card className="admin-card p-3">
-        <Row>
-          <Col lg={6} md={6} sm={6} xs={6}>
-            <p className="card-title">Property details</p>
-          </Col>
-          <Col lg={6} md={6} sm={6} xs={6}>
-            <Button
-              btnText="Edit property"
-              icon={<FaPen />}
-              style={{ float: "right" }}
-              onClick={() => navigate("/admin/edit-pm")}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={2}>
-            <div className="pm mt-2">
-              <p className="pmsize">PM 1</p>
+      {/* <Card className="admin-card p-3"> */}
+      <Row>
+        <Col lg={6} md={6} sm={6} xs={6}>
+          <p className="card-title">Property details</p>
+        </Col>
+        <Col lg={6} md={6} sm={6} xs={6}>
+          <Button
+            btnText="Edit property"
+            icon={<FaPen />}
+            style={{ float: "right" }}
+            onClick={() => navigate("/admin/edit-pm")}
+          />
+        </Col>
+      </Row>
+
+      <div className="mt-3">
+        <div className="d-flex align-items-center gap-3">
+          <div>
+            <div className="pm">
+              <p className="pmsize m-0">
+                {property?.name && getInitials(property.name).toUpperCase()}
+              </p>
             </div>
-          </Col>
-          <Col md={5}>
+          </div>
+          <div>
             <p className="pm-data">
-              <span className="sp">Name:</span> 10
+              <span className="sp">Name:</span> {property?.name}
             </p>
             <p className="pm-data">
-              <span className="sp">Address:</span> 10
+              <span className="sp">Address:</span> {property?.address}
             </p>
             <p className="pm-data">
-              <span className="sp">No of Tenants:</span> 10
+              <span className="sp">No of Tenants:</span>{" "}
+              {property?.tenant_count}
             </p>
 
             {/* <Button btnText='Add Block' icon={<FaPen />} onClick={() => navigate('')} /> */}
@@ -73,9 +123,8 @@ export default function ViewPM() {
                 Add block
               </button>
             </div>
-          </Col>
-          <Col md={5}></Col>
-        </Row>
+          </div>
+        </div>
 
         <Table className="mt-3" striped responsive borderless size="sm">
           <thead>
@@ -108,15 +157,14 @@ export default function ViewPM() {
                         navigate("/admin/view-block");
                       }}
                     />
-                    {/* <Edit className='menu' size='1.5em' onClick={toggle3}/>
-                    <Trash className='menu' size='1.5em' /> */}
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>
-      </Card>
+        {/* </Card> */}
+      </div>
 
       <Modal
         size="sm"

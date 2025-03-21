@@ -1,64 +1,105 @@
-import React from 'react'
-import { Col, Row, Card } from 'reactstrap'
-import './Login.css'
-import '../Styles/Styles.css'
-import cover from '../Images/estate.jpg'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+import axios from "axios";
+import qs from "qs"; // Import qs for urlencoded formatting
+import { Col, Row, Card } from "reactstrap";
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
+import "../Styles/Styles.css";
+import cover from "../Images/estate.jpg";
+
 export default function Login() {
-    const navigate = useNavigate()
-    return (
-        <div className='whole'>
-            <Row className='m-0 divided-row'>
-                <Col md={6} className='left-login-div'></Col>
-                <Col md={6} className='right-login-div'></Col>
-            </Row>
-            <Row className='m-0 login-row'>
-                <Col md={1} className=''></Col>
-                <Col md={10} className='' style={{ height: '0vh' }}>
-                    <div className='flexx'>
-                        <div>
-                            <Card className='shadow login-card' style={{ height: '75vh' }}>
-                                <Row>
-                                    {/* <Col md={6} className='img-col' style={{
-                                        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(${cover})`,
-                                    }}
-                                    ></Col> */}
-                                    <Col md={6}>
-                                        <img src={cover} className="img-col" alt='' />
-                                    </Col>
-                                    <Col md={6} className='pt-5'>
-                                        <p className='w'>Welcome</p>
-                                        <div>
-                                            <input className='input_field' autoComplete='off' placeholder='Email or Phone' type='text' />
-                                        </div>
-                                        <div>
-                                            <input className='input_field' autoComplete='off' placeholder='Password' type='password' />
-                                        </div>
-                                        <p className='forgot'>Forgot password?</p>
-                                        <div>
-                                            <button className='login-btn' onClick={() => navigate('/admin/home')}>Login</button>
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={6}></Col>
-                                    <Col md={6}>
-                                        <Row style={{ marginTop: 80 }}>
-                                            <Col md={6}>
-                                                <p className='footer-text'>Privacy . Policy . Terms and Conditions</p>
-                                            </Col>
-                                            <Col md={6}>
-                                                <p className='footer-text' style={{ float: 'right', marginRight: 15 }}>Homes &copy; 2022    </p>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                </Row>
-                            </Card>
-                        </div>
-                    </div>
-                </Col>
-                <Col md={1} className=''></Col>
-            </Row>
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // Handle input change
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    setLoading(true);
+    setError("");
+
+    const requestData = qs.stringify({
+      grant_type: "password",
+      username: formData.username,
+      password: formData.password,
+      scope: "",
+    });
+
+    axios
+      .post(`https://projectestate.onrender.com/api/login_user`, requestData, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      })
+      .then((response) => {
+        setLoading(false);
+        if (response.status === 200) {
+          console.log(response);
+
+          const token = response?.data?.access_token;
+          if (token) {
+            localStorage.setItem("access_token", token);
+          }
+          navigate("/admin/home");
+        }
+      })
+      .catch((e) => {
+        setLoading(false);
+        setError(e.response?.data?.detail || "An error occurred. Try again.");
+      });
+  };
+
+  return (
+    <Row className="m-0 d-flex align-items-center justify-content-center mt-5">
+      <Col md={4}></Col>
+
+      <Col md={4} className="w-30">
+        <h3>Login</h3>
+        <div>
+          <input
+            className="input_field"
+            autoComplete="off"
+            placeholder="Email"
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+          />
         </div>
-    )
+        <div>
+          <input
+            className="input_field"
+            autoComplete="off"
+            placeholder="Password"
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
+        {error && <p className="error-text">{error}</p>}
+        <p className="forgot">Forgot password?</p>
+        <div>
+          <button
+            className="login-btn"
+            onClick={handleSubmit}
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </div>
+        <p className="mt-3 small" onClick={() => navigate("/register")}>
+          Don't have an account? <b>Create new account</b>
+        </p>
+      </Col>
+      <Col md={4}></Col>
+    </Row>
+  );
 }

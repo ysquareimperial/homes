@@ -13,7 +13,7 @@
   border: none;
   background-color: #e3e3e3;
   margin-top: 10px;
-  width: 400px;
+  width: 100%;
   color: black;
 }
 .input_field::placeholder {
@@ -96,13 +96,17 @@
   color: black;
   height: 100vh;
 }
+.outlet_ {
+  height: 100vh;
+  overflow-y: auto;
+}
 
 .navb {
   background-color: #e3e3e3;
-  height: 50px;
+  height: 6vh;
 }
 .list {
-  margin: 0;
+  /* margin: 0; */
   /* margin-top: 5px; */
   padding: 5px;
 }
@@ -223,12 +227,19 @@ select::-ms-expand {
 }
 .pm {
   background-color: rgba(128, 128, 128, 0.219);
-  border-radius: 20px;
+  border-radius: 500px;
+  width: 150px;
+  height: 150px;
+  /* padding: 10px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
 }
 .pmsize {
-  font-weight: bold;
+  /* font-weight: bold;
   font-size: 20px;
-  padding: 50px;
+  padding: 50px; */
 }
 .pm-data {
   margin: 0;
@@ -497,6 +508,13 @@ background-color: purple;
   }
   .mobile_navbar {
     background-color: #e3e3e3;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  .outlet_{
+    margin-top: 40px;
   }
   .logo {
     width: 25%;

@@ -24,6 +24,9 @@ import ViewIntroductionLetter from "../Letters.js/ViewIntroductionLetter";
 import ViewIncrementLetter from "../Letters.js/ViewIncrementLetter";
 import ViewTerminationLetter from "../Letters.js/ViewTerminationLetter";
 import ViewRentReminder from "../Letters.js/ViewRentReminder";
+import Register from "../Auth/Register";
+import Maintenance from "../AdminDashboard/Maintenance";
+import Payments from "../AdminDashboard/Payments";
 
 function AppNavigation() {
   let element = useRoutes([
@@ -31,6 +34,10 @@ function AppNavigation() {
       path: "/",
       element: <Login />,
       children: [{ index: true }],
+    },
+    {
+      path: "/register",
+      element: <Register />,
     },
     {
       element: <AppIndex />,
@@ -60,6 +67,14 @@ function AppNavigation() {
         {
           path: "admin/create-pm",
           element: <CreatePM />,
+        },
+        {
+          path: "admin/view-maintenance",
+          element: <Maintenance />,
+        },
+        {
+          path: "admin/view-payments",
+          element: <Payments />,
         },
         {
           path: "admin/view-pm",

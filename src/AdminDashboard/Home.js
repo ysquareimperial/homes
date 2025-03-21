@@ -10,8 +10,8 @@ import TenantsByAccommodation from "../Operator/TenantsByAccommodation";
 import { FaCalendar, FaUser } from "react-icons/fa";
 export default function Home() {
   return (
-    <div className="mt-4">
-      <Row>
+    <div className="outlet_">
+      <Row className="mt-4">
         <Col lg={3}>
           <Card className="dashboard_card p-3 shadow-sm">
             <Row>

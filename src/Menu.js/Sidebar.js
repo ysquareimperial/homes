@@ -4,6 +4,9 @@ import { MdMapsHomeWork } from "react-icons/md";
 import { MdDashboard } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AiOutlineDashboard, AiOutlineHome } from "react-icons/ai";
+import { GrHostMaintenance } from "react-icons/gr";
+import { TbReportMoney } from "react-icons/tb";
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -11,6 +14,9 @@ export default function Sidebar() {
     <>
       {location.pathname.includes("operator/") ? null : (
         <div className="mt-4">
+          <h4 style={{ fontWeight: "bold" }} className="mb-4">
+            Homes
+          </h4>
           {/* <p className={`sidebar-i ${location.pathname === "/pending-tasks" && "active_sidebar" }`} onClick={() => navigate('/pending-tasks')}><i class="fa-solid fa-list-check"></i>{' '}My Tasks</p> */}
           <p
             className={`list ${
@@ -18,7 +24,7 @@ export default function Sidebar() {
             }`}
             onClick={() => navigate("/admin/home")}
           >
-            <MdDashboard size="1.5em" /> Dashboard
+            <AiOutlineDashboard size="1.5em" /> Dashboard
           </p>
           {/* <p
             className={`list ${
@@ -34,7 +40,24 @@ export default function Sidebar() {
             }`}
             onClick={() => navigate("/admin/PM")}
           >
-            <MdMapsHomeWork size="1.5em" /> Properties
+            <AiOutlineHome size="1.5em" /> Properties
+          </p>
+
+          <p
+            className={`list ${
+              location.pathname === "/admin/view-maintenance" && "active_listss"
+            }`}
+            onClick={() => navigate("/admin/view-maintenance")}
+          >
+            <GrHostMaintenance size="1.5em" /> Maintenance
+          </p>
+          <p
+            className={`list ${
+              location.pathname === "/admin/view-payments" && "active_listss"
+            }`}
+            onClick={() => navigate("/admin/view-payments")}
+          >
+            <TbReportMoney size="1.5em" /> Payments
           </p>
         </div>
       )}

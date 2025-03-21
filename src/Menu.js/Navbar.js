@@ -1,168 +1,137 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaBell } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "reactstrap";
 import logo from "../Images/HomesLogo.jpg";
 import user from "../Images/profile.jpg";
-import { useLocation } from "react-router-dom";
+import Drawer from "react-modern-drawer";
 import { useEffect } from "react";
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import "react-modern-drawer/dist/index.css";
+import { CgProfile } from "react-icons/cg";
+import { MdMapsHomeWork } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
+import { FaUsers } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
+import { AiOutlineDashboard, AiOutlineHome } from "react-icons/ai";
+import { GrHostMaintenance } from "react-icons/gr";
+import { TbReportMoney } from "react-icons/tb";
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
 
   return (
     <div className="">
       <div>
-        <Row className="navb">
-          <Col md={1}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "50px",
-              }}
-            >
-              <div>
-                <img
-                  src={logo}
-                  className="logo"
-                  alt="homes logo"
-                  onClick={() => navigate("/admin/home")}
-                />
-              </div>
-            </div>
-          </Col>
-          <Col md={1}></Col>
-          <Col md={1}></Col>
-          <Col md={1}></Col>
-          <Col md={1}></Col>
-          <Col md={1}></Col>
-          <Col md={1}></Col>
-          <Col md={1}></Col>
-          {/* <Col md={1}></Col> */}
-          <Col md={2}>{/* <p className='username'>Habu Yakasai</p> */}</Col>
-          <Col md={2} className="">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "50px",
-              }}
-            >
-              {/* <div
-                className="relative"
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/operator/notifications")}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <div>
-                    <span className="absolute">1</span>
-                  </div>
-                </div>
-                <FaBell
-                  size="1.6em"
-                  style={{ color: "rgb(34, 64, 41)", zIndex: 1 }}
-                />
-              </div> */}
-              <div
-                className="bell_user_icon_div"
-                onClick={() => {
-                  location.pathname.includes("operator")
-                    ? navigate("/operator/profile")
-                    : navigate("admin/profile");
-                }}
-              >
-                <p className="username">
-                  Habu Yakasai <img src={user} className="userimage" alt="" />
-                </p>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </div>
-      <div>
-        <Row className="mobile_navbar">
-          <Col sm={6} xs={6}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "50px",
-              }}
-            >
-              <div>
-                <img
-                  src={logo}
-                  className="logo"
-                  alt="homes logo"
+        <div className="mobile_navbar d-flex justify-content-between p-2">
+          <div>
+            <HiOutlineMenuAlt2
+              size={25}
+              className="drawer"
+              onClick={toggleDrawer}
+            />
+          </div>
+          <div>
+            <h5>Homes</h5>
+          </div>
+          <div>
+            <CgProfile size={25} />
+          </div>
+        </div>
+        <Drawer
+          open={isOpen}
+          onClose={toggleDrawer}
+          direction="left"
+          className=""
+        >
+          <>
+            {location.pathname.includes("operator/") ? null : (
+              <div className="mt-4">
+                {/* <p className={`sidebar-i ${location.pathname === "/pending-tasks" && "active_sidebar" }`} onClick={() => navigate('/pending-tasks')}><i class="fa-solid fa-list-check"></i>{' '}My Tasks</p> */}
+                <p
+                  className={`list ${
+                    location.pathname === "/admin/home" && "active_listss"
+                  }`}
                   onClick={() => {
-                    location.pathname.includes("admin")
-                      ? navigate("admin/home")
-                      : navigate("operator/home");
-                  }}
-                />
-              </div>
-            </div>
-          </Col>
-
-          <Col sm={6} xs={6} className="">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "50px",
-                float: "right",
-              }}
-            >
-              <div
-                className="relative"
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/operator/notifications")}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    navigate("/admin/home");
+                    toggleDrawer();
                   }}
                 >
-                  <div>
-                    <span className="absolute">1</span>
-                  </div>
-                </div>
-                <FaBell
-                  size="1.6em"
-                  style={{ color: "rgb(34, 64, 41)", zIndex: 1 }}
-                />
-              </div>
-              <div
-                className="bell_user_icon_div"
-                onClick={() => {
-                  location.pathname.includes("operator")
-                    ? navigate("/operator/profile")
-                    : navigate("admin/profile");
-                }}
-              >
-                <p className="username no">
-                  Habu Yakasai <img src={user} className="userimage" alt="" />
+                  <AiOutlineDashboard size="1.5em" /> Dashboard
                 </p>
-                <p className="username">
-                  <img src={user} className="userimage" alt="" />
+                {/* <p
+                      className={`list ${
+                        location.pathname === "/admin/operators" && "active_listss"
+                      }`}
+                      onClick={() => navigate("/admin/operators")}
+                    >
+                      <FaUsers size="1.5em" /> Operators
+                    </p> */}
+                <p
+                  className={`list ${
+                    location.pathname === "/admin/PM" && "active_listss"
+                  }`}
+                  onClick={() => {
+                    navigate("/admin/PM");
+                    toggleDrawer();
+                  }}
+                >
+                  <AiOutlineHome size="1.5em" /> Properties
+                </p>
+
+                <p
+                  className={`list ${
+                    location.pathname === "/admin/view-maintenance" &&
+                    "active_listss"
+                  }`}
+                  onClick={() => {
+                    navigate("/admin/view-maintenance");
+                    toggleDrawer();
+                  }}
+                >
+                  <GrHostMaintenance size="1.5em" /> Maintenance
+                </p>
+                <p
+                  className={`list ${
+                    location.pathname === "/admin/view-payments" &&
+                    "active_listss"
+                  }`}
+                  onClick={() => {
+                    navigate("/admin/view-payments");
+                    toggleDrawer();
+                  }}
+                >
+                  <TbReportMoney size="1.5em" /> Payments
                 </p>
               </div>
-            </div>
-          </Col>
-        </Row>
+            )}
+            {location.pathname.includes("admin") ? null : (
+              <div className="mt-4">
+                {/* <p className={`sidebar-i ${location.pathname === "/pending-tasks" && "active_sidebar" }`} onClick={() => navigate('/pending-tasks')}><i class="fa-solid fa-list-check"></i>{' '}My Tasks</p> */}
+                <p
+                  className={`list ${
+                    location.pathname === "/operator/home" && "active_listss"
+                  }`}
+                  onClick={() => navigate("/operator/home")}
+                >
+                  <MdDashboard size="1.5em" /> Dashboard
+                </p>
+                <p
+                  className={`list ${
+                    location.pathname === "/operator/PM" && "active_listss"
+                  }`}
+                  onClick={() => navigate("/operator/PM")}
+                >
+                  <MdMapsHomeWork size="1.5em" /> PM
+                </p>
+              </div>
+            )}
+          </>
+        </Drawer>
       </div>
     </div>
   );

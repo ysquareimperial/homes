@@ -10,6 +10,7 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
     "assert": "^2.1.0",
+    "axios": "^1.8.3",
     "bootstrap": "^5.3.3",
     "buffer": "^6.0.3",
     "chart.js": "^4.4.8",
@@ -21,8 +22,10 @@
     "react-feather": "^2.0.10",
     "react-icons": "^5.5.0",
     "react-minimal-pie-chart": "^9.1.0",
+    "react-modern-drawer": "^1.4.0",
     "react-router-dom": "^7.3.0",
     "react-scripts": "5.0.1",
+    "react-super-responsive-table": "^6.0.2",
     "reactstrap": "^9.2.3",
     "web-vitals": "^4.2.4"
   },
