@@ -5,6 +5,8 @@ import { Col, Row, Card } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import "../Styles/Styles.css";
+import pj from "../Images/pj.png";
+
 import cover from "../Images/estate.jpg";
 
 export default function Login() {
@@ -61,6 +63,9 @@ export default function Login() {
       <Col md={4}></Col>
 
       <Col md={4} className="w-30">
+        <div className="text-center mb-3">
+          <img src={pj} style={{ width: 80 }} />
+        </div>
         <h3>Login</h3>
         <div>
           <input
@@ -88,7 +93,7 @@ export default function Login() {
         <p className="forgot">Forgot password?</p>
         <div>
           <button
-            className="login-btn"
+            className="action-btn w-100"
             onClick={handleSubmit}
             disabled={loading}
           >

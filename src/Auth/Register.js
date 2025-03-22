@@ -56,6 +56,9 @@ function Register() {
       <Col md={4}></Col>
 
       <Col md={4} className="w-30">
+      <div className="text-center mb-3">
+          <img src={pj} style={{ width: 80 }} />
+        </div>
         <h3>Register</h3>
         {error && <p className="text-danger">{error}</p>}
         <form onSubmit={handleSubmit} className="">
@@ -200,7 +203,7 @@ function Register() {
             />
           </div>
           <button
-            className="login-btn w-100 mt-3"
+            className="action-btn w-100 mt-3"
             type="submit"
             disabled={loading}
           >
