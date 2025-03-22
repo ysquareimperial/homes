@@ -6,6 +6,7 @@ import { Card, Col, Modal, ModalBody, Row, Table } from "reactstrap";
 import Button from "./Button";
 import { useQuery } from "../components/helpers";
 import axios from "axios";
+import { CiEdit } from "react-icons/ci";
 
 export default function ViewPM() {
   const getInitials = (name) => {
@@ -80,23 +81,22 @@ export default function ViewPM() {
     },
   ];
   return (
-    <div className="mt-4">
+    <div className="outlet_">
       {/* <Card className="admin-card p-3"> */}
-      <Row>
+      <Row className="mt-3">
         <Col lg={6} md={6} sm={6} xs={6}>
-          <p className="card-title">Property details</p>
+          <h3>Property details</h3>
         </Col>
         <Col lg={6} md={6} sm={6} xs={6}>
-          <Button
-            btnText="Edit property"
-            icon={<FaPen />}
+          <CiEdit
+            size="1.5em"
             style={{ float: "right" }}
             onClick={() => navigate("/admin/edit-pm")}
           />
         </Col>
       </Row>
 
-      <div className="mt-3">
+      <div className="">
         <div className="d-flex align-items-center gap-3">
           <div>
             <div className="pm">

@@ -58,9 +58,9 @@ export default function CreatePM() {
   };
 
   return (
-    <div className="mt-4">
-      <Card className="admin-card p-3">
-        <p className="card-title">Add property</p>
+    <div className="outlet_">
+      {/* <Card className="admin-card p-3"> */}
+        <h3 className="mt-4">Add property</h3>
         <Row>
           <Col md={6}>
             <div>
@@ -86,13 +86,13 @@ export default function CreatePM() {
               />
             </div>
           </Col>
-        </Row>
+        </Row>  
         <div className="mt-3">
-          <button onClick={handleSave} disabled={loading}>
+          <button className="action-btn shadow" onClick={handleSave} disabled={loading}>
             {loading ? "Saving..." : "Save"}
           </button>
         </div>
-      </Card>
+      {/* </Card> */}
     </div>
   );
 }

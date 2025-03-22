@@ -8,9 +8,9 @@ export default function EditPM() {
   const navigate = useNavigate();
 
   return (
-    <div className="mt-4">
-      <Card className="admin-card p-3">
-        <p className="card-title">Edit PM</p>
+    <div className="outlet_">
+      {/* <Card className="admin-card p-3"> */}
+        <h3 className="mt-3">Edit PM</h3>
         <Row>
           <Col md={6}>
             <div>
@@ -51,11 +51,11 @@ export default function EditPM() {
         <div className="mt-3">
           <Button
             btnText={"Save"}
-            icon={<FaSave />}
+            // icon={<FaSave />}
             onClick={() => navigate("/admin/PM")}
           />
         </div>
-      </Card>
+      {/* </Card> */}
     </div>
   );
 }

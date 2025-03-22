@@ -63,7 +63,7 @@ export default function PM() {
         <Col lg={6} md={6} sm={6} xs={6}>
           <Button
             btnText="Add property"
-            icon={<FaPlus />}
+            // icon={<FaPlus />}
             style={{ float: "right", fontSize: 12 }}
             onClick={() => navigate("/admin/create-pm")}
           />

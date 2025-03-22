@@ -1,18 +1,19 @@
 import React from "react";
 // import { ImHome, ImUser } from 'react-icons/im'
-import { MdMapsHomeWork } from "react-icons/md";
+import { MdManageHistory, MdMapsHomeWork } from "react-icons/md";
 import { MdDashboard } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineDashboard, AiOutlineHome } from "react-icons/ai";
 import { GrHostMaintenance } from "react-icons/gr";
-import { TbReportMoney } from "react-icons/tb";
+import { TbDoorEnter, TbReportMoney } from "react-icons/tb";
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
   return (
     <>
-      {location.pathname.includes("operator/") ? null : (
+      {location.pathname.includes("operator/") ||
+      location.pathname.includes("tenant/") ? null : (
         <div className="mt-4">
           <h4 style={{ fontWeight: "bold" }} className="mb-4">
             Homes
@@ -66,19 +67,28 @@ export default function Sidebar() {
           {/* <p className={`sidebar-i ${location.pathname === "/pending-tasks" && "active_sidebar" }`} onClick={() => navigate('/pending-tasks')}><i class="fa-solid fa-list-check"></i>{' '}My Tasks</p> */}
           <p
             className={`list ${
-              location.pathname === "/operator/home" && "active_listss"
+              location.pathname === "/tenant/home" && "active_listss"
             }`}
-            onClick={() => navigate("/operator/home")}
+            onClick={() => navigate("/tenant/home")}
           >
-            <MdDashboard size="1.5em" /> Dashboard
+            <AiOutlineDashboard size="1.5em" /> Dashboard
           </p>
           <p
             className={`list ${
-              location.pathname === "/operator/PM" && "active_listss"
+              location.pathname === "/tenant/rent" && "active_listss"
             }`}
-            onClick={() => navigate("/operator/PM")}
+            onClick={() => navigate("/tenant/rent")}
           >
-            <MdMapsHomeWork size="1.5em" /> PM
+            <TbDoorEnter size="1.5em" /> Rent
+          </p>
+          <p
+            className={`list ${
+              location.pathname === "/tenant/maintenance-history" &&
+              "active_listss"
+            }`}
+            onClick={() => navigate("/tenant/maintenance-history")}
+          >
+            <MdManageHistory size="1.5em" /> Maintenance history
           </p>
         </div>
       )}

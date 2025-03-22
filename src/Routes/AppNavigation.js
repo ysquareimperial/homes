@@ -27,6 +27,10 @@ import ViewRentReminder from "../Letters.js/ViewRentReminder";
 import Register from "../Auth/Register";
 import Maintenance from "../AdminDashboard/Maintenance";
 import Payments from "../AdminDashboard/Payments";
+import MaintenanceHistory from "../Tenant/MaintenanceHistory";
+import Rent from "../Tenant/Rent";
+import TenantDashboard from "../Tenant/TenantDashboard";
+import RequestMaintenance from "../Tenant/RequestMaintenance";
 
 function AppNavigation() {
   let element = useRoutes([
@@ -113,8 +117,20 @@ function AppNavigation() {
           element: <ViewRentReminder />,
         },
         {
-          path: "/operator/home",
-          element: <OperatorDashboard />,
+          path: "/tenant/maintenance-history",
+          element: <MaintenanceHistory />,
+        },
+        {
+          path: "/tenant/home",
+          element: <TenantDashboard />,
+        },
+        {
+          path: "/tenant/rent",
+          element: <Rent />,
+        },
+        {
+          path: "/tenant/request-maintenance",
+          element: <RequestMaintenance />,
         },
         {
           path: "/operator/PM",

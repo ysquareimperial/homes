@@ -128,9 +128,10 @@
 }
 
 .action-btn {
-  color: black;
+  color: white;
   border: none;
-  background-image: linear-gradient(to right, #f2f2f2, #e3e3e3);
+  /* background-image: linear-gradient(to right, #f2f2f2, #e3e3e3); */
+  background-color: #301934;
   padding: 5px 20px;
   border-radius: 20px;
 }
@@ -507,7 +508,8 @@ background-color: purple;
     display: none !important;
   }
   .mobile_navbar {
-    background-color: #e3e3e3;
+    background-color: #301934;
+    color: white;
     position: fixed;
     top: 0;
     width: 100%;

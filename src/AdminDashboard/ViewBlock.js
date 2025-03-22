@@ -67,11 +67,11 @@ export default function ViewBlock() {
     },
   ];
   return (
-    <div className="mt-4">
+    <div className="outlet_">
       {/* <Card className="admin-card p-3"> */}
-      <Row>
+      <Row className="mt-3">
         <Col md={6}>
-          <p className="card-title">Property name/Block A/Tenants List</p>
+          <h3>Property name/Block A/Tenants List</h3>
         </Col>
         <Col md={6}>
           {/* <Button btnText='Edit PM' icon={<FaPen />} style={{ float: 'right' }} onClick={() => navigate('')} /> */}
