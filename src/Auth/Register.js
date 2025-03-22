@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Col, Modal, ModalBody, Row } from "reactstrap";
-import pj from "../Images/pj.png";
+import pjey from "../Images/pj.png";
 
 function Register() {
   const [open1, setOpen1] = useState(false);
@@ -58,7 +58,7 @@ function Register() {
 
       <Col md={4} className="w-30">
       <div className="text-center mb-3">
-          <img src={pj} style={{ width: 80 }} />
+          <img src={pjey} style={{ width: 80 }} />
         </div>
         <h3>Register</h3>
         {error && <p className="text-danger">{error}</p>}
