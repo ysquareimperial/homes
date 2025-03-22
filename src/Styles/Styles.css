@@ -91,6 +91,12 @@
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+.table_row {
+  cursor: pointer;
+}
+.table_row:hover {
+  background-color: #e3e3e3;
+}
 .sidebarr {
   background-color: #301934;
   color: white;
@@ -492,6 +498,15 @@ background-color: purple;
 }
 
 @media only screen and (max-width: 768px) {
+  .table_row {
+    background-color: #e3e3e3;
+    border-radius: 10px;
+    border: none !important;
+    margin-bottom: 10px;
+  }
+  .table_head{
+    display: none !important;
+  }
   .dashboard_card {
     margin-bottom: 10px;
   }
@@ -516,7 +531,7 @@ background-color: purple;
     width: 100%;
     z-index: 100;
   }
-  .outlet_{
+  .outlet_ {
     margin-top: 40px;
   }
   .logo {

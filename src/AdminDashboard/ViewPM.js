@@ -87,84 +87,102 @@ export default function ViewPM() {
         <Col lg={6} md={6} sm={6} xs={6}>
           <h3>Property details</h3>
         </Col>
-        <Col lg={6} md={6} sm={6} xs={6}>
-          <CiEdit
-            size="1.5em"
-            style={{ float: "right" }}
-            onClick={() => navigate("/admin/edit-pm")}
-          />
+        <Col lg={6} md={6} sm={6} xs={6} className="">
+          {property.name && property.address ? (
+            <CiEdit
+              size="1.8em"
+              style={{ float: "right", cursor: "pointer" }}
+              onClick={() =>
+                navigate(
+                  `/admin/edit-pm?id=${property.id}&name='${property.name}&address=${property.address}`
+                )
+              }
+            />
+          ) : null}
         </Col>
       </Row>
-
-      <div className="">
-        <div className="d-flex align-items-center gap-3">
-          <div>
-            <div className="pm">
-              <p className="pmsize m-0">
-                {property?.name && getInitials(property.name).toUpperCase()}
-              </p>
-            </div>
-          </div>
-          <div>
-            <p className="pm-data">
-              <span className="sp">Name:</span> {property?.name}
-            </p>
-            <p className="pm-data">
-              <span className="sp">Address:</span> {property?.address}
-            </p>
-            <p className="pm-data">
-              <span className="sp">No of Tenants:</span>{" "}
-              {property?.tenant_count}
-            </p>
-
-            {/* <Button btnText='Add Block' icon={<FaPen />} onClick={() => navigate('')} /> */}
-            <div className="mt-3">
-              <button className="block-btn mt-2" onClick={toggle1}>
-                Add block
-              </button>
-            </div>
+      {loading ? (
+        <div className="d-flex justify-content-center mt-5">
+          <div class="auth_btn_loader" style={{ color: "grey" }}>
+            <span
+              style={{ width: "1rem", height: "1rem" }}
+              class="spinner-border"
+              role="status"
+              aria-hidden="true"
+            ></span>
           </div>
         </div>
+      ) : (
+        <div className="">
+          <div className="d-flex align-items-center gap-3">
+            <div>
+              <div className="pm">
+                <p className="pmsize m-0">
+                  {property?.name && getInitials(property.name).toUpperCase()}
+                </p>
+              </div>
+            </div>
+            <div>
+              <p className="pm-data">
+                <span className="sp">Name:</span> {property?.name}
+              </p>
+              <p className="pm-data">
+                <span className="sp">Address:</span> {property?.address}
+              </p>
+              <p className="pm-data">
+                <span className="sp">No of Tenants:</span>{" "}
+                {property?.tenant_count}
+              </p>
 
-        <Table className="mt-3" striped responsive borderless size="sm">
-          <thead>
-            <tr>
-              <th>S/N</th>
-              <th>Blocks</th>
-              <th>Tenants</th>
-              <th>
-                <div style={{ float: "right", marginRight: "" }}>Action</div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {operatorsData.map((item, index) => (
+              {/* <Button btnText='Add Block' icon={<FaPen />} onClick={() => navigate('')} /> */}
+              <div className="mt-3">
+                <button className="block-btn mt-2" onClick={toggle1}>
+                  Add block
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <Table className="mt-3" striped responsive borderless size="sm">
+            <thead>
               <tr>
-                <th scope="row">{index + 1}</th>
-                <td>{item.blockCode}</td>
-                <td>{item.noOfTenants}</td>
-                <td>
-                  <div style={{ float: "right" }}>
-                    <PlusSquare
-                      className="menu"
-                      size="1.5em"
-                      onClick={toggle2}
-                    />
-                    <Eye
-                      className="menu"
-                      size="1.5em"
-                      onClick={() => {
-                        navigate("/admin/view-block");
-                      }}
-                    />
-                  </div>
-                </td>
+                <th>S/N</th>
+                <th>Blocks</th>
+                <th>Tenants</th>
+                <th>
+                  <div style={{ float: "right", marginRight: "" }}>Action</div>
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-        {/* </Card> */}
-      </div>
+            </thead>
+            <tbody>
+              {operatorsData.map((item, index) => (
+                <tr>
+                  <th scope="row">{index + 1}</th>
+                  <td>{item.blockCode}</td>
+                  <td>{item.noOfTenants}</td>
+                  <td>
+                    <div style={{ float: "right" }}>
+                      <PlusSquare
+                        className="menu"
+                        size="1.5em"
+                        onClick={toggle2}
+                      />
+                      <Eye
+                        className="menu"
+                        size="1.5em"
+                        onClick={() => {
+                          navigate("/admin/view-block");
+                        }}
+                      />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          {/* </Card> */}
+        </div>
+      )}
 
       <Modal
         size="sm"
