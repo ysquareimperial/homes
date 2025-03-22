@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Col, Modal, ModalBody, Row } from "reactstrap";
+import pj from "../Images/pj.png";
 
 function Register() {
   const [open1, setOpen1] = useState(false);
