@@ -11,7 +11,7 @@ import { FaCalendar, FaUser } from "react-icons/fa";
 export default function Home() {
   return (
     <div className="outlet_">
-      <Row className="mt-4">
+      <Row className="mt-4 m-0">
         <Col lg={3}>
           <Card className="dashboard_card p-3 shadow-sm">
             <Row>

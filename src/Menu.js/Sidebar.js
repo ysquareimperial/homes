@@ -15,9 +15,9 @@ export default function Sidebar() {
       {location.pathname.includes("operator/") ||
       location.pathname.includes("tenant/") ? null : (
         <div className="mt-4">
-          <h4 style={{ fontWeight: "bold" }} className="mb-4">
+          {/* <h4 style={{ fontWeight: "bold" }} className="mb-4">
             Homes
-          </h4>
+          </h4> */}
           {/* <p className={`sidebar-i ${location.pathname === "/pending-tasks" && "active_sidebar" }`} onClick={() => navigate('/pending-tasks')}><i class="fa-solid fa-list-check"></i>{' '}My Tasks</p> */}
           <p
             className={`list ${

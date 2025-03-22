@@ -1,32 +1,32 @@
-import React from 'react'
-import { Row, Col, Card } from 'reactstrap'
-import { BsClockHistory, BsClock } from 'react-icons/bs'
-import { MdMapsHomeWork } from 'react-icons/md'
-import { ImUsers } from 'react-icons/im'
-import '../Operator/Chart.css'
-import DoughnutChart from '../Operator/Doughnut'
-import BarChart from '../Operator/BarChart'
-import TenantsByAccommodation from '../Operator/TenantsByAccommodation'
-import { FaCalendar, FaUser } from 'react-icons/fa'
+import React from "react";
+import { Row, Col, Card } from "reactstrap";
+import { BsClockHistory, BsClock } from "react-icons/bs";
+import { MdMapsHomeWork } from "react-icons/md";
+import { ImUsers } from "react-icons/im";
+import "../Operator/Chart.css";
+import DoughnutChart from "../Operator/Doughnut";
+import BarChart from "../Operator/BarChart";
+import TenantsByAccommodation from "../Operator/TenantsByAccommodation";
+import { FaCalendar, FaUser } from "react-icons/fa";
 export default function TenantDashboard() {
   return (
     <div className="outlet_">
-         <Row className="mt-4">
+      <Row className="mt-4">
         <Col lg={3}>
-          <Card className='dashboard_card p-3 shadow-sm'>
+          <Card className="dashboard_card p-3 shadow-sm">
             <Row>
               <Col lg={3} md={3} sm={3} xs={3}>
-                <div className='dashboard_icon_div1'>
+                <div className="dashboard_icon_div1">
                   <div>
-                    <BsClockHistory size='2.5em' className='icon_div1' />
+                    <BsClockHistory size="2.5em" className="icon_div1" />
                   </div>
                 </div>
               </Col>
               <Col lg={9} md={9} sm={9} xs={9}>
-                <div className='dashboard_card_details'>
+                <div className="dashboard_card_details">
                   <div>
-                    <p className='d_count'>12</p>
-                    <p className='d_text'> Upcoming Rents</p>
+                    <p className="d_count">12</p>
+                    <p className="d_text"> Upcoming Rents</p>
                   </div>
                 </div>
               </Col>
@@ -34,20 +34,20 @@ export default function TenantDashboard() {
           </Card>
         </Col>
         <Col lg={3}>
-          <Card className='dashboard_card p-3 shadow-sm'>
+          <Card className="dashboard_card p-3 shadow-sm">
             <Row>
               <Col lg={3} md={3} sm={3} xs={3}>
-                <div className='dashboard_icon_div2'>
+                <div className="dashboard_icon_div2">
                   <div>
-                    <BsClock size='2.5em' className='icon_div2' />
+                    <BsClock size="2.5em" className="icon_div2" />
                   </div>
                 </div>
               </Col>
               <Col lg={9} md={9} sm={9} xs={9}>
-                <div className='dashboard_card_details'>
+                <div className="dashboard_card_details">
                   <div>
-                    <p className='d_count'>12</p>
-                    <p className='d_text'> Rents Due</p>
+                    <p className="d_count">12</p>
+                    <p className="d_text"> Rents Due</p>
                   </div>
                 </div>
               </Col>
@@ -55,20 +55,20 @@ export default function TenantDashboard() {
           </Card>
         </Col>
         <Col lg={3}>
-          <Card className='dashboard_card p-3 shadow-sm'>
+          <Card className="dashboard_card p-3 shadow-sm">
             <Row>
               <Col lg={3} md={3} sm={3} xs={3}>
-                <div className='dashboard_icon_div3'>
+                <div className="dashboard_icon_div3">
                   <div>
-                    <MdMapsHomeWork size='2.5em' className='icon_div3' />
+                    <MdMapsHomeWork size="2.5em" className="icon_div3" />
                   </div>
                 </div>
               </Col>
               <Col lg={9} md={9} sm={9} xs={9}>
-                <div className='dashboard_card_details'>
+                <div className="dashboard_card_details">
                   <div>
-                    <p className='d_count'>122</p>
-                    <p className='d_text'>Rents</p>
+                    <p className="d_count">122</p>
+                    <p className="d_text">Rents</p>
                   </div>
                 </div>
               </Col>
@@ -76,18 +76,18 @@ export default function TenantDashboard() {
           </Card>
         </Col>
         <Col lg={3}>
-          <Card className='dashboard_card p-3 shadow-sm'>
+          <Card className="dashboard_card p-3 shadow-sm">
             <Row>
               <Col lg={3} md={3} sm={3} xs={3}>
-                <div className='dashboard_icon_div4'>
+                <div className="dashboard_icon_div4">
                   <div>
-                    <ImUsers size='2.5em' className='icon_div4' />
+                    <ImUsers size="2.5em" className="icon_div4" />
                   </div>
                 </div>
               </Col>
               <Col lg={9} md={9} sm={9} xs={9}>
-                <p className='d_count'>412</p>
-                <p className='d_text'> Maintenance request</p>
+                <p className="d_count">412</p>
+                <p className="d_text"> Maintenance request</p>
               </Col>
             </Row>
           </Card>
@@ -95,18 +95,72 @@ export default function TenantDashboard() {
       </Row>
       <Row>
         <Col md={12}>
-          <Card className='dashboard_card p-3 mt-4 shadow-sm' style={{ height: "20vh" }}>
-            <p className='d_count'>Upcoming Rents</p>
-            <marquee behavior="scroll" direction="up" onmouseover="stop();" onmouseout="start();" scrolldelay="200" height="200">
+          <Card
+            className="dashboard_card p-3 mt-4 shadow-sm"
+            style={{ height: "20vh" }}
+          >
+            <p className="d_count">Upcoming Rents</p>
+            <marquee
+              behavior="scroll"
+              direction="up"
+              onmouseover="stop();"
+              onmouseout="start();"
+              scrolldelay="200"
+              height="200"
+            >
               <div style={{ marginBottom: 30 }} className="">
-                <p className='marq_el' style={{ margin: 0, marginRight: 10, display: 'inline' }}><MdMapsHomeWork className='not_icon' size='1em' color='grey' />{' '}PM1</p>
-                <p className='marq_el' style={{ margin: 0, marginRight: 10, display: 'inline' }}><FaUser className='not_icon' size='1em' color='grey' />{' '}Tenant: Habu Yakasai</p>
-                <p className='marq_el' style={{ margin: 0, marginRight: 10, display: 'inline' }}><FaCalendar className='not_icon' size='1em' color='grey' />{' '}Date: 12/12/2022</p>
+                <p
+                  className="marq_el"
+                  style={{ margin: 0, marginRight: 10, display: "inline" }}
+                >
+                  <MdMapsHomeWork
+                    className="not_icon"
+                    size="1em"
+                    color="grey"
+                  />{" "}
+                  PM1
+                </p>
+                <p
+                  className="marq_el"
+                  style={{ margin: 0, marginRight: 10, display: "inline" }}
+                >
+                  <FaUser className="not_icon" size="1em" color="grey" />{" "}
+                  Tenant: Habu Yakasai
+                </p>
+                <p
+                  className="marq_el"
+                  style={{ margin: 0, marginRight: 10, display: "inline" }}
+                >
+                  <FaCalendar className="not_icon" size="1em" color="grey" />{" "}
+                  Date: 12/12/2022
+                </p>
               </div>
               <div style={{ marginBottom: 30 }} className="">
-                <p className='marq_el' style={{ margin: 0, marginRight: 10, display: 'inline' }}><MdMapsHomeWork className='not_icon' size='1em' color='grey' />{' '}PM1</p>
-                <p className='marq_el' style={{ margin: 0, marginRight: 10, display: 'inline' }}><FaUser className='not_icon' size='1em' color='grey' />{' '}Tenant: Habu Yakasai</p>
-                <p className='marq_el' style={{ margin: 0, marginRight: 10, display: 'inline' }}><FaCalendar className='not_icon' size='1em' color='grey' />{' '}Date: 12/12/2022</p>
+                <p
+                  className="marq_el"
+                  style={{ margin: 0, marginRight: 10, display: "inline" }}
+                >
+                  <MdMapsHomeWork
+                    className="not_icon"
+                    size="1em"
+                    color="grey"
+                  />{" "}
+                  PM1
+                </p>
+                <p
+                  className="marq_el"
+                  style={{ margin: 0, marginRight: 10, display: "inline" }}
+                >
+                  <FaUser className="not_icon" size="1em" color="grey" />{" "}
+                  Tenant: Habu Yakasai
+                </p>
+                <p
+                  className="marq_el"
+                  style={{ margin: 0, marginRight: 10, display: "inline" }}
+                >
+                  <FaCalendar className="not_icon" size="1em" color="grey" />{" "}
+                  Date: 12/12/2022
+                </p>
               </div>
             </marquee>
           </Card>
@@ -149,5 +203,5 @@ export default function TenantDashboard() {
         </Col>
       </Row> */}
     </div>
-  )
+  );
 }

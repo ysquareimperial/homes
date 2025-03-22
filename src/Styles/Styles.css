@@ -92,13 +92,14 @@
   border-bottom-left-radius: 10px;
 }
 .sidebarr {
-  background-color: #f2f2f2;
-  color: black;
+  background-color: #301934;
+  color: white;
   height: 100vh;
 }
 .outlet_ {
   height: 100vh;
-  overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .navb {
