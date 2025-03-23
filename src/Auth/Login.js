@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import qs from "qs"; // Import qs for urlencoded formatting
+import qs from "qs";
 import { Col, Row, Card } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
@@ -18,9 +18,9 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Handle input change
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value.replace(/\s/g, "") }); // Prevent spaces
   };
 
   const handleSubmit = () => {

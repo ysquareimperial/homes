@@ -497,6 +497,17 @@ background-color: purple;
   /* margin-top: 10px; */
 }
 
+.plus_ {
+  background-color: #cbcbcb;
+  padding: 8px;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
 @media only screen and (max-width: 768px) {
   .table_row {
     background-color: #e3e3e3;
@@ -504,7 +515,7 @@ background-color: purple;
     border: none !important;
     margin-bottom: 10px;
   }
-  .table_head{
+  .table_head {
     display: none !important;
   }
   .dashboard_card {

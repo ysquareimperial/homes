@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Eye, PlusSquare } from "react-feather";
 import { FaPen } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { Card, Col, Modal, ModalBody, Row, Table } from "reactstrap";
+import { Card, Col, Modal, ModalBody, Row } from "reactstrap";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import Button from "./Button";
 import { useQuery } from "../components/helpers";
 import axios from "axios";
 import { CiEdit } from "react-icons/ci";
+import { HiOutlinePlus } from "react-icons/hi";
 
 export default function ViewPM() {
   const getInitials = (name) => {
@@ -17,6 +19,12 @@ export default function ViewPM() {
   };
   const query = useQuery();
   const propertyId = query.get(`id`);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [property, setProperty] = useState([]);
+  const [loading2, setLoading2] = useState(false);
+  const [loading3, setLoading3] = useState(false);
+  const [error, setError] = useState(null);
   const [open1, setOpen1] = useState(false);
   const toggle1 = () => {
     setOpen1(!open1);
@@ -29,11 +37,61 @@ export default function ViewPM() {
   const toggle3 = () => {
     setOpen3(!open3);
   };
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [property, setProperty] = useState([]);
 
   const token = localStorage.getItem("access_token");
+
+  const [formData, setFormData] = useState({
+    blockName: "",
+  });
+
+  const [formData2, setFormData2] = useState({
+    name: "",
+    phone: "",
+    sex: "",
+    purpose: "",
+    accommodation: "",
+    duration: "",
+    rent: "",
+    expiry: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleChange2 = (e) => {
+    setFormData2({ ...formData2, [e.target.name]: e.target.value });
+  };
+  const createBlock = async (e) => {
+    e.preventDefault(); // Prevent form submission
+    setLoading2(true);
+    const token = localStorage.getItem("access_token");
+
+    try {
+      const response = await axios.post(
+        "https://projectestate.onrender.com/api/blocks/",
+        { block_name: formData.blockName, property_id: propertyId },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response);
+      if (response.status === 200) {
+        toggle1();
+        fetchProperty();
+        setFormData({ blockName: "" });
+      }
+      setLoading2(false);
+    } catch (error) {
+      setLoading2(false);
+      console.error(
+        "Error creating property:",
+        error.response ? error.response.data : error
+      );
+    }
+  };
   const fetchProperty = () => {
     setLoading(true);
     if (!token) {
@@ -65,21 +123,65 @@ export default function ViewPM() {
   useEffect(() => {
     fetchProperty();
   }, [token]);
+  // Handle API request
+  const createTenant = async () => {
+    setLoading3(true);
+    setError("");
 
-  const operatorsData = [
-    {
-      blockCode: "Block A",
-      noOfTenants: 10,
-    },
-    {
-      blockCode: "Block B",
-      noOfTenants: 10,
-    },
-    {
-      blockCode: "Block C",
-      noOfTenants: 10,
-    },
-  ];
+    const token = localStorage.getItem("access_token"); // Fetch token
+
+    if (!token) {
+      setError("Unauthorized! Please log in.");
+      setLoading3(false);
+      return;
+    }
+
+    const requestBody = {
+      name: formData2.name,
+      phone: formData2.phone,
+      sex: formData2.sex,
+      purpose: formData2.purpose,
+      accommodation: formData2.accommodation,
+      duration: formData2.duration,
+      rent: Number(formData2.rent),
+      expiry: formData2.expiry,
+      property_id: propertyId, // Replace with actual value
+      block_id: 1, // Replace with actual value
+    };
+
+    try {
+      const response = await axios.post(
+        "https://projectestate.onrender.com/api/tenants/",
+        requestBody,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Tenant added successfully", response.data);
+      setFormData2({
+        name: "",
+        phone: "",
+        sex: "",
+        purpose: "",
+        accommodation: "",
+        duration: "",
+        rent: "",
+        expiry: "",
+      });
+      if (response.status === 200) {
+        toggle2(); // Close the form or give success feedback
+        fetchProperty();
+      }
+    } catch (err) {
+      setError(err.response?.data?.detail || "An error occurred.");
+    } finally {
+      setLoading3(false);
+    }
+  };
   return (
     <div className="outlet_">
       {/* <Card className="admin-card p-3"> */}
@@ -144,41 +246,43 @@ export default function ViewPM() {
           </div>
 
           <Table className="mt-3" striped responsive borderless size="sm">
-            <thead>
-              <tr>
-                <th>S/N</th>
-                <th>Blocks</th>
-                <th>Tenants</th>
-                <th>
-                  <div style={{ float: "right", marginRight: "" }}>Action</div>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {operatorsData.map((item, index) => (
-                <tr>
-                  <th scope="row">{index + 1}</th>
-                  <td>{item.blockCode}</td>
-                  <td>{item.noOfTenants}</td>
-                  <td>
-                    <div style={{ float: "right" }}>
-                      <PlusSquare
-                        className="menu"
-                        size="1.5em"
-                        onClick={toggle2}
-                      />
-                      <Eye
-                        className="menu"
-                        size="1.5em"
-                        onClick={() => {
-                          navigate("/admin/view-block");
+            <Thead>
+              <Tr>
+                {/* <Th className="p-2 border">S/N</Th> */}
+                <Th className="p-2 border">Blocks</Th>
+                <Th className="p-2 border">Tenants</Th>
+                <Th className="p-2 border">Add tenant</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {property?.blocks?.map((item, index) => (
+                <Tr
+                  className="table_row"
+                  onClick={() => {
+                    navigate(
+                      `/admin/view-block?property_id=${property?.id}&block_id=${item?.id}`
+                    );
+                  }}
+                  key={index}
+                >
+                  {/* <Th className="p-2 border" scope="row">{index + 1}</Th> */}
+                  <Td className="p-2 border">{item.block_name}</Td>
+                  <Td className="p-2 border">{item.tenant_count}</Td>
+                  <Td className="p-2 border">
+                    <div className="plus_">
+                      <HiOutlinePlus
+                        className=""
+                        size="1em"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggle2();
                         }}
                       />
                     </div>
-                  </td>
-                </tr>
+                  </Td>
+                </Tr>
               ))}
-            </tbody>
+            </Tbody>
           </Table>
           {/* </Card> */}
         </div>
@@ -195,10 +299,20 @@ export default function ViewPM() {
           <div className="menu-div">
             <h6>Add Block</h6>
             <div>
-              <input type="text" className="inputs" placeholder="Block Name" />
+              <input
+                type="text"
+                className="inputs"
+                placeholder="Block Name"
+                name="blockName"
+                value={formData.blockName}
+                onChange={handleChange}
+              />
             </div>
             <div className="mt-3">
-              <Button btnText={"Save"} onClick={toggle1} />
+              <Button
+                btnText={loading2 ? "Saving..." : "Save"}
+                onClick={createBlock}
+              />
             </div>
           </div>
         </ModalBody>
@@ -214,64 +328,96 @@ export default function ViewPM() {
           <div className="menu-div">
             <h6>Add Tenant</h6>
             <div>
-              <input type="text" className="inputs" placeholder="Title" />
               <input
                 type="text"
                 className="inputs"
                 placeholder="Tenant Full Name"
+                name="name"
+                value={formData2.name}
+                onChange={handleChange2}
               />
-              <input type="text" className="inputs" placeholder="Phone" />
+              <input
+                type="text"
+                className="inputs"
+                placeholder="Phone"
+                name="phone"
+                value={formData2.phone}
+                onChange={handleChange2}
+              />
               <div className="select">
-                <select>
-                  <option>-select sex-</option>
-                  <option>Male</option>
-                  <option>Female</option>
+                <select
+                  name="sex"
+                  value={formData2.sex}
+                  onChange={handleChange2}
+                >
+                  <option value="">-select sex-</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
                 </select>
               </div>
               <div className="select">
-                <select>
-                  <option>-select purpose-</option>
-                  <option>Commercial</option>
-                  <option>Residential</option>
+                <select
+                  name="purpose"
+                  value={formData2.purpose}
+                  onChange={handleChange2}
+                >
+                  <option value="">-select purpose-</option>
+                  <option value="Commercial">Commercial</option>
+                  <option value="Residential">Residential</option>
                 </select>
               </div>
               <div className="select">
-                <select>
-                  <option>-select accommodation-</option>
-                  <option>Duplex</option>
-                  <option>Bungalo</option>
-                  <option>Terrace</option>
-                  <option>Apartment</option>
-                  <option>Detached</option>
+                <select
+                  name="accommodation"
+                  value={formData2.accommodation}
+                  onChange={handleChange2}
+                >
+                  <option value="">-select accommodation-</option>
+                  <option value="Duplex">Duplex</option>
+                  <option value="Bungalo">Bungalow</option>
+                  <option value="Terrace">Terrace</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="Detached">Detached</option>
                 </select>
               </div>
               <div className="select">
-                <select>
-                  <option>-select bedroom-</option>
-                  <option>1 Bedroom</option>
-                  <option>2 Bedrooms</option>
-                  <option>3 Bedrroms</option>
-                  <option>4 Bedrooms</option>
-                  <option>5 Bedrooms</option>
-                  <option>6 Bedrooms</option>
-                  <option>7 Bedrooms</option>
+                <select
+                  name="duration"
+                  value={formData2.duration}
+                  onChange={handleChange2}
+                >
+                  <option value="">-select duration-</option>
+                  <option value="1year">1 year</option>
+                  <option value="2years">2 years</option>
+                  <option value="3years">3 years</option>
+                  <option value="4years">4 years</option>
+                  <option value="5years">5 years</option>
                 </select>
               </div>
-              <div className="select">
-                <select>
-                  <option>-select duration-</option>
-                  <option>1year</option>
-                  <option>2years</option>
-                  <option>3years</option>
-                  <option>4years</option>
-                  <option>5years</option>
-                </select>
-              </div>
-              <input type="number" className="inputs" placeholder="Rent" />
-              <input type="date" className="inputs" placeholder="" />
+              <input
+                type="number"
+                className="inputs"
+                placeholder="Rent"
+                name="rent"
+                value={formData2.rent}
+                onChange={handleChange2}
+              />
+              <input
+                type="date"
+                className="inputs"
+                name="expiry"
+                value={formData2.expiry}
+                onChange={handleChange2}
+              />
             </div>
+
+            {error && <p className="error-text">{error}</p>}
+
             <div className="mt-3">
-              <Button btnText={"Save"} onClick={toggle2} />
+              <Button
+                btnText={loading3 ? "Saving..." : "Save"}
+                onClick={createTenant}
+              />
             </div>
           </div>
         </ModalBody>

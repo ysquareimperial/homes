@@ -16,12 +16,17 @@ import { useLocation } from "react-router-dom";
 import { AiOutlineDashboard, AiOutlineHome } from "react-icons/ai";
 import { GrHostMaintenance } from "react-icons/gr";
 import { TbDoorEnter, TbReportMoney } from "react-icons/tb";
+import { IoLogInOutline } from "react-icons/io5";
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    navigate("/");
   };
 
   return (
@@ -150,6 +155,15 @@ export default function Navbar() {
                 </p>
               </div>
             )}
+            <p
+              className={`mt-5 list ${
+                location.pathname === "/tenant/maintenance-history" &&
+                "active_listss"
+              }`}
+              onClick={handleLogout}
+            >
+              <IoLogInOutline size="1.5em" /> Log out
+            </p>
           </>
         </Drawer>
       </div>

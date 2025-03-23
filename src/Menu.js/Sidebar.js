@@ -7,9 +7,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineDashboard, AiOutlineHome } from "react-icons/ai";
 import { GrHostMaintenance } from "react-icons/gr";
 import { TbDoorEnter, TbReportMoney } from "react-icons/tb";
+import { IoLogInOutline } from "react-icons/io5";
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    navigate("/");
+  };
   return (
     <>
       {location.pathname.includes("operator/") ||
@@ -92,6 +97,14 @@ export default function Sidebar() {
           </p>
         </div>
       )}
+      <p
+        className={`mt-5 list ${
+          location.pathname === "/tenant/maintenance-history" && "active_listss"
+        }`}
+        onClick={handleLogout}
+      >
+        <IoLogInOutline size="1.5em" /> Log out
+      </p>
     </>
   );
 }
