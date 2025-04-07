@@ -128,6 +128,7 @@ function AppNavigation() {
           path: "/tenant/rent",
           element: <Rent />,
         },
+     
         {
           path: "/tenant/request-maintenance",
           element: <RequestMaintenance />,

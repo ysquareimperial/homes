@@ -6,15 +6,26 @@ import { Card, Col, Row } from "reactstrap";
 export default function RequestMaintenance() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    tenantName: "",
-    phone: "",
-    category: "",
-    details: "",
-    priority: "",
+    tenant_name: "",
+    phone_number: "",
+    accommodation: "",
+    description: "",
+    priority: "Medium",
+    status: "Pending",
+    tenant_id: 0,
+    property_id: 0,
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]:
+        name === "tenant_id" || name === "property_id"
+          ? parseInt(value, 10)
+          : value,
+    }));
   };
 
   const [loading, setLoading] = useState(false);
@@ -22,8 +33,8 @@ export default function RequestMaintenance() {
   const handleSave = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const token = localStorage.getItem("access_token");
 
+    const token = localStorage.getItem("access_token");
     if (!token) {
       console.error("No access token found");
       setLoading(false);
@@ -32,7 +43,7 @@ export default function RequestMaintenance() {
 
     try {
       const response = await axios.post(
-        "https://projectestate.onrender.com/api/maintenance/",
+        "https://projectestate.onrender.com/api/maintenance_requests/",
         formData,
         {
           headers: {
@@ -42,10 +53,10 @@ export default function RequestMaintenance() {
         }
       );
 
-      if (response.status === 200) {
-        console.log("Maintenance request created successfully", response);
+      if (response.status === 200 || response.status === 201) {
+        console.log("Maintenance request created successfully", response.data);
         setLoading(false);
-        navigate("/admin/maintenance");
+        navigate("/admin/PM");
       } else {
         console.error("Unexpected response status:", response.status);
         setLoading(false);
@@ -53,7 +64,7 @@ export default function RequestMaintenance() {
     } catch (error) {
       setLoading(false);
       console.error(
-        "Error creating maintenance request:",
+        "Error submitting maintenance request:",
         error.response ? error.response.data : error
       );
     }
@@ -61,77 +72,101 @@ export default function RequestMaintenance() {
 
   return (
     <div className="outlet_">
-      <h3 className="mt-4">Maintenance request</h3>
-      {/* <Row>
+      <h3 className="mt-4">Request Maintenance</h3>
+      <Row>
         <Col md={6}>
           <input
             type="text"
-            name="tenantName"
+            name="tenant_name"
             className="inputs"
             placeholder="Tenant Name"
-            value={formData.tenantName}
+            value={formData.tenant_name}
             onChange={handleChange}
           />
         </Col>
         <Col md={6}>
           <input
             type="text"
-            name="phone"
+            name="phone_number"
             className="inputs"
             placeholder="Phone Number"
-            value={formData.phone}
+            value={formData.phone_number}
             onChange={handleChange}
           />
         </Col>
-      </Row> */}
-      <Row className="mt-3">
-        <Col md={6}>
-          <select
-            name="category"
+        <Col md={6} className="mt-3">
+          <input
+            type="text"
+            name="accommodation"
             className="inputs"
-            value={formData.category}
+            placeholder="Accommodation"
+            value={formData.accommodation}
             onChange={handleChange}
-          >
-            <option value="">Select Category</option>
-            <option value="Plumbing">Plumbing</option>
-            <option value="Electrical">Electrical</option>
-            <option value="Structural">Structural</option>
-            <option value="Other">Other</option>
-          </select>
+          />
         </Col>
-        <Col md={6}>
+        <Col md={6} className="mt-3">
+          <input
+            type="number"
+            name="tenant_id"
+            className="inputs"
+            placeholder="Tenant ID"
+            value={formData.tenant_id}
+            onChange={handleChange}
+          />
+        </Col>
+        <Col md={6} className="mt-3">
+          <input
+            type="number"
+            name="property_id"
+            className="inputs"
+            placeholder="Property ID"
+            value={formData.property_id}
+            onChange={handleChange}
+          />
+        </Col>
+        <Col md={6} className="mt-3">
           <select
             name="priority"
             className="inputs"
             value={formData.priority}
             onChange={handleChange}
           >
-            <option value="">Select Priority</option>
-
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
           </select>
         </Col>
-      </Row>
-      <Row className="mt-3">
-        <Col md={12}>
-          <textarea
-            name="details"
+        <Col md={6} className="mt-3">
+          <select
+            name="status"
             className="inputs"
-            placeholder="Maintenance Details"
-            value={formData.details}
+            value={formData.status}
+            onChange={handleChange}
+          >
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </Col>
+        <Col md={12} className="mt-3">
+          <textarea
+            name="description"
+            className="inputs"
+            placeholder="Description"
+            rows="4"
+            value={formData.description}
             onChange={handleChange}
           />
         </Col>
       </Row>
-      <div className="mt-3">
+
+      <div className="mt-4">
         <button
           className="action-btn shadow"
-          onClick={() => navigate("/tenant/maintenance-history")}
+          onClick={handleSave}
           disabled={loading}
         >
-          {loading ? "Saving..." : "Submit Request"}
+          {loading ? "Submitting..." : "Submit Request"}
         </button>
       </div>
     </div>

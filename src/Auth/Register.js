@@ -19,6 +19,7 @@ function Register() {
     email: "",
     location: "",
     password: "",
+    role: "", // added role
   });
 
   const [loading, setLoading] = useState(false);
@@ -57,7 +58,7 @@ function Register() {
       <Col md={4}></Col>
 
       <Col md={4} className="w-30">
-      <div className="text-center mb-3">
+        <div className="text-center mb-3">
           <img src={pjey} style={{ width: 80 }} />
         </div>
         <h3>Register</h3>
@@ -203,6 +204,31 @@ function Register() {
               required
             />
           </div>
+
+          <div>
+            <label
+              style={{
+                marginTop: 10,
+                display: "block",
+                fontSize: 12,
+                color: "grey",
+              }}
+            >
+              Register as
+            </label>
+            <select
+              name="role"
+              className="input_field mt-1"
+              value={formData.role}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Role</option>
+              <option value="landlord">landlord</option>
+              <option value="tenant">tenant</option>
+            </select>
+          </div>
+
           <button
             className="action-btn w-100 mt-3"
             type="submit"

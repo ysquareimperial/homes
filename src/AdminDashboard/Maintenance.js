@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import { Col, Row } from "reactstrap";
+import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 const maintenanceData = [
   {
@@ -34,7 +36,8 @@ const maintenanceData = [
 
 const Maintenance = () => {
   const [expandedRows, setExpandedRows] = useState({});
-
+  
+  const navigate = useNavigate();
   const toggleShowMore = (index) => {
     setExpandedRows((prev) => ({
       ...prev,
@@ -50,7 +53,7 @@ const Maintenance = () => {
           <h3>Maintenance requests</h3>
         </Col>
         <Col md={6}>
-          {/* <Button btnText='Edit PM' icon={<FaPen />} style={{ float: 'right' }} onClick={() => navigate('')} /> */}
+       
         </Col>
       </Row>
       <Table className="mt-3 border-collapse w-full">

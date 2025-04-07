@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Button from "../AdminDashboard/Button";
+import { useNavigate } from "react-router-dom";
+import { Col, Row } from "reactstrap";
 
 const maintenanceHistoryData = [
   {
@@ -41,6 +44,7 @@ const maintenanceHistoryData = [
 
 const MaintenanceHistory = () => {
   const [showMore, setShowMore] = useState({});
+  const navigate = useNavigate();
 
   const toggleShowMore = (id) => {
     setShowMore((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -48,7 +52,19 @@ const MaintenanceHistory = () => {
 
   return (
     <div className="outlet_">
-      <h3 className="mt-4">Maintenance History</h3>
+      <Row className="mt-3 m-0">
+        <Col md={6}>
+          <h3>Maintenance History</h3>
+        </Col>
+        <Col md={6}>
+          <Button
+            btnText="Request"
+            // icon={<FaPlus />}
+            style={{ float: "right", fontSize: 12 }}
+            onClick={() => navigate("/tenant/request-maintenance")}
+          />
+        </Col>
+      </Row>
       <div className="mt-3">
         {maintenanceHistoryData.map((item) => (
           <div key={item.id} className="card p-3 mb-3">

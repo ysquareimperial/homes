@@ -46,10 +46,16 @@ export default function Login() {
           console.log(response);
 
           const token = response?.data?.access_token;
+          const role = response?.data?.role;
           if (token) {
             localStorage.setItem("access_token", token);
+            localStorage.setItem("role", role);
           }
-          navigate("/admin/home");
+          if (response.data.role === "landlord") {
+            navigate("/admin/home");
+          } else {
+            navigate("/tenant/home");
+          }
         }
       })
       .catch((e) => {
