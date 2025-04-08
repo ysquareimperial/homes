@@ -89,12 +89,12 @@ const MaintenanceHistory = () => {
           <h3>Maintenance History</h3>
         </Col>
         <Col md={6}>
-          <Button
+          {/* <Button
             btnText="Request"
             // icon={<FaPlus />}
             style={{ float: "right", fontSize: 12 }}
             onClick={() => navigate("/tenant/request-maintenance")}
-          />
+          /> */}
         </Col>
       </Row>
       <div className="mt-3">

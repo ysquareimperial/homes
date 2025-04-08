@@ -15,6 +15,7 @@ export default function RequestMaintenance() {
     phone_number: "",
     accommodation: "",
     description: "",
+    category: "",
     priority: "Medium",
     status: "Pending", // always default
     tenant_id: parseInt(tenantId, 10),
@@ -104,6 +105,18 @@ export default function RequestMaintenance() {
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
+          </select>
+        </Col>
+        <Col md={6} className="mt-3">
+          <select
+            name="category"
+            className="inputs"
+            value={formData.category}
+            onChange={handleChange}
+          >
+            <option value="Low">Electricity</option>
+            <option value="Medium">Plumbing</option>
+            <option value="High">Other</option>
           </select>
         </Col>
         <Col md={12} className="mt-3">
