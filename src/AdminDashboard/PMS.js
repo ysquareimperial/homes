@@ -134,45 +134,53 @@ export default function PM() {
           </Row>
 
           {/* <PropertyTable properties={properties} toggle1={toggle1} /> */}
-          <div className="">
-            <Table className="">
-              <Thead>
-                <Tr>
-                  {/* <th>S/N</th> */}
-                  <Th className="p-2 border">Name</Th>
-                  <Th className="p-2 border">Address</Th>
-                  <Th className="p-2 border">Tenants</Th>
-                  <Th className="p-2 border">Blocks</Th>
-                  <Th className="p-2 border">Action</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {properties.map((property, index) => (
-                  <Tr
-                    key={index}
-                    className="border-b table_row"
-                    onClick={() => navigate(`/admin/view-pm?id=${property.id}`)}
-                  >
-                    <Td className="p-2 border">{property.name}</Td>
-                    <Td className="p-2 border">{property.address}</Td>
-                    <Td className="p-2 border">{property.tenant_count}</Td>
-                    <Td className="p-2 border">{property.block_count}</Td>
-                    <Td className="p-2 border">
-                      <GoTrash
-                        className="text-danger"
-                        size="1em"
-                        onClick={(e) => {
-                          e.stopPropagation(); // Prevents the Tr click from triggering
-                          setPropertyId(property.id);
-                          toggle1();
-                        }}
-                      />
-                    </Td>
+          {properties?.length === 0 ? (
+            <div className="text-center">
+              <span>No properties found</span>
+            </div>
+          ) : (
+            <div className="">
+              <Table className="">
+                <Thead>
+                  <Tr>
+                    {/* <th>S/N</th> */}
+                    <Th className="p-2 border">Name</Th>
+                    <Th className="p-2 border">Address</Th>
+                    <Th className="p-2 border">Tenants</Th>
+                    <Th className="p-2 border">Blocks</Th>
+                    <Th className="p-2 border">Action</Th>
                   </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </div>
+                </Thead>
+                <Tbody>
+                  {properties.map((property, index) => (
+                    <Tr
+                      key={index}
+                      className="border-b table_row"
+                      onClick={() =>
+                        navigate(`/admin/view-pm?id=${property.id}`)
+                      }
+                    >
+                      <Td className="p-2 border">{property.name}</Td>
+                      <Td className="p-2 border">{property.address}</Td>
+                      <Td className="p-2 border">{property.tenant_count}</Td>
+                      <Td className="p-2 border">{property.block_count}</Td>
+                      <Td className="p-2 border">
+                        <GoTrash
+                          className="text-danger"
+                          size="1em"
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevents the Tr click from triggering
+                            setPropertyId(property.id);
+                            toggle1();
+                          }}
+                        />
+                      </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </div>
+          )}
         </div>
       )}
 

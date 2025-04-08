@@ -47,9 +47,14 @@ export default function Login() {
 
           const token = response?.data?.access_token;
           const role = response?.data?.role;
+          const name =
+            response?.data?.firstname + " " + response?.data?.lastname;
+          const email = response?.data?.email;
           if (token) {
             localStorage.setItem("access_token", token);
             localStorage.setItem("role", role);
+            localStorage.setItem("name", name);
+            localStorage.setItem("email", email);
           }
           if (response.data.role === "landlord") {
             navigate("/admin/home");

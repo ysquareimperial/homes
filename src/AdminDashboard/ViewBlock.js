@@ -317,6 +317,8 @@ export default function ViewBlock() {
                       <option value="">-select purpose-</option>
                       <option value="Commercial">Commercial</option>
                       <option value="Residential">Residential</option>
+                      <option value="Industrial">Industrial</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
                   <div className="select">

@@ -25,6 +25,7 @@ export default function ViewPM() {
   const [loading2, setLoading2] = useState(false);
   const [loading3, setLoading3] = useState(false);
   const [error, setError] = useState(null);
+  const [blockId, setBlockId] = useState(null);
   const [open1, setOpen1] = useState(false);
   const toggle1 = () => {
     setOpen1(!open1);
@@ -52,6 +53,7 @@ export default function ViewPM() {
     accommodation: "",
     duration: "",
     rent: "",
+    email: "",
     expiry: "",
   });
 
@@ -145,8 +147,9 @@ export default function ViewPM() {
       duration: formData2.duration,
       rent: Number(formData2.rent),
       expiry: formData2.expiry,
+      email: formData2.email,
       property_id: propertyId, // Replace with actual value
-      block_id: 1, // Replace with actual value
+      block_id: blockId, // Replace with actual value
     };
 
     try {
@@ -274,6 +277,7 @@ export default function ViewPM() {
                         className=""
                         size="1em"
                         onClick={(e) => {
+                          setBlockId(item?.id);
                           e.stopPropagation();
                           toggle2();
                         }}
@@ -327,6 +331,7 @@ export default function ViewPM() {
         <ModalBody className="modal-body">
           <div className="menu-div">
             <h6>Add Tenant</h6>
+            {/* {JSON.stringify(blockId)} */}
             <div>
               <input
                 type="text"
@@ -334,6 +339,14 @@ export default function ViewPM() {
                 placeholder="Tenant Full Name"
                 name="name"
                 value={formData2.name}
+                onChange={handleChange2}
+              />
+              <input
+                type="text"
+                className="inputs"
+                placeholder="Tenant Email"
+                name="email"
+                value={formData2.email}
                 onChange={handleChange2}
               />
               <input
@@ -364,6 +377,8 @@ export default function ViewPM() {
                   <option value="">-select purpose-</option>
                   <option value="Commercial">Commercial</option>
                   <option value="Residential">Residential</option>
+                  <option value="Industrial">Industrial</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <div className="select">
@@ -378,6 +393,9 @@ export default function ViewPM() {
                   <option value="Terrace">Terrace</option>
                   <option value="Apartment">Apartment</option>
                   <option value="Detached">Detached</option>
+                  <option value="Flat">Flat</option>
+                  <option value="Tenanment">Tenament</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <div className="select">
@@ -533,6 +551,7 @@ export default function ViewPM() {
                   <option>Terrace</option>
                   <option>Apartment</option>
                   <option>Detached</option>
+                  <option>Tenament</option>
                 </select>
               </div>
               <div className="select">

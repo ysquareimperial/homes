@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../AdminDashboard/Button";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "reactstrap";
+import axios from "axios";
 
 const maintenanceHistoryData = [
   {
@@ -45,11 +46,42 @@ const maintenanceHistoryData = [
 const MaintenanceHistory = () => {
   const [showMore, setShowMore] = useState({});
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("access_token");
+  const [maintenanceHist, setMaintenanceHist] = useState([]);
   const toggleShowMore = (id) => {
     setShowMore((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
+    const fetchMaintenance = () => {
+      setLoading(true);
+
+      if (!token) {
+        console.error("No access token found");
+        setLoading(false);
+        return;
+      }
+
+      axios
+        .get("https://projectestate.onrender.com/api/maintenance", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setLoading(false);
+          setMaintenanceHist(response?.data);
+          console.log(response);
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log("error fetching data", err);
+        });
+    };
+
+    useEffect(() => {
+      fetchMaintenance();
+    }, [token]);
   return (
     <div className="outlet_">
       <Row className="mt-3 m-0">
@@ -66,21 +98,21 @@ const MaintenanceHistory = () => {
         </Col>
       </Row>
       <div className="mt-3">
-        {maintenanceHistoryData.map((item) => (
+        {maintenanceHist.map((item) => (
           <div key={item.id} className="card p-3 mb-3">
-            <h5>{item.tenant}</h5>
+            <h5>{item.property_name}</h5>
             <p>
-              <strong>Phone:</strong> {item.phone}
+              <strong>Phone:</strong> {item.phone_number}
             </p>
-            <p>
-              <strong>Category:</strong> {item.category}
-            </p>
+            {/* <p>
+              <strong>Category:</strong> Category
+            </p> */}
             <p>
               <strong>Details:</strong>{" "}
               {showMore[item.id]
-                ? item.details
-                : `${item.details.substring(0, 30)}...`}
-              {item.details.length > 30 && (
+                ? item.description
+                : `${item.description.substring(0, 30)}...`}
+              {item.description.length > 30 && (
                 <span
                   onClick={() => toggleShowMore(item.id)}
                   className="text-primary underline"

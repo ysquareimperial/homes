@@ -184,6 +184,29 @@ function Register() {
               required
             />
           </div>
+                <div>
+                  <label
+                    style={{
+                      marginTop: 10,
+                      display: "block",
+                      fontSize: 12,
+                      color: "grey",
+                    }}
+                  >
+                    Register as
+                  </label>
+                  <select
+                    name="role"
+                    className="input_field mt-1"
+                    value={formData.role}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select Role</option>
+                    <option value="landlord">landlord</option>
+                    <option value="tenant">tenant</option>
+                  </select>
+                </div>
           <div>
             <label
               style={{
@@ -205,29 +228,6 @@ function Register() {
             />
           </div>
 
-          <div>
-            <label
-              style={{
-                marginTop: 10,
-                display: "block",
-                fontSize: 12,
-                color: "grey",
-              }}
-            >
-              Register as
-            </label>
-            <select
-              name="role"
-              className="input_field mt-1"
-              value={formData.role}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Role</option>
-              <option value="landlord">landlord</option>
-              <option value="tenant">tenant</option>
-            </select>
-          </div>
 
           <button
             className="action-btn w-100 mt-3"

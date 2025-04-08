@@ -2,48 +2,41 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Card, Col, Row } from "reactstrap";
+import { useQuery } from "../components/helpers";
 
 export default function RequestMaintenance() {
   const navigate = useNavigate();
+  const query = useQuery();
+  const tenantId = query.get("tenant_id");
+  const propertyId = query.get("property_id");
+
   const [formData, setFormData] = useState({
     tenant_name: "",
     phone_number: "",
     accommodation: "",
     description: "",
     priority: "Medium",
-    status: "Pending",
-    tenant_id: 0,
-    property_id: 0,
+    status: "Pending", // always default
+    tenant_id: parseInt(tenantId, 10),
+    property_id: parseInt(propertyId, 10),
   });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]:
-        name === "tenant_id" || name === "property_id"
-          ? parseInt(value, 10)
-          : value,
-    }));
-  };
 
   const [loading, setLoading] = useState(false);
 
-  const handleSave = async (e) => {
-    e.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+  const token = localStorage.getItem("access_token");
+
+  const handleSave = async () => {
     setLoading(true);
-
-    const token = localStorage.getItem("access_token");
-    if (!token) {
-      console.error("No access token found");
-      setLoading(false);
-      return;
-    }
-
     try {
       const response = await axios.post(
-        "https://projectestate.onrender.com/api/maintenance_requests/",
+        "https://projectestate.onrender.com/api/maintenance",
         formData,
         {
           headers: {
@@ -52,21 +45,18 @@ export default function RequestMaintenance() {
           },
         }
       );
+      // Assuming success means 201 or 200
+      if (response.status === 201 || response.status === 200) {
+        console.log(response);
 
-      if (response.status === 200 || response.status === 201) {
-        console.log("Maintenance request created successfully", response.data);
-        setLoading(false);
-        navigate("/admin/PM");
-      } else {
-        console.error("Unexpected response status:", response.status);
-        setLoading(false);
+        // alert("Maintenance request submitted successfully!");
+        navigate("/tenant/maintenance-history"); // change to your desired route
       }
     } catch (error) {
+      console.error("Submission failed:", error);
+      // alert("Failed to submit request.");
+    } finally {
       setLoading(false);
-      console.error(
-        "Error submitting maintenance request:",
-        error.response ? error.response.data : error
-      );
     }
   };
 
@@ -105,26 +95,6 @@ export default function RequestMaintenance() {
           />
         </Col>
         <Col md={6} className="mt-3">
-          <input
-            type="number"
-            name="tenant_id"
-            className="inputs"
-            placeholder="Tenant ID"
-            value={formData.tenant_id}
-            onChange={handleChange}
-          />
-        </Col>
-        <Col md={6} className="mt-3">
-          <input
-            type="number"
-            name="property_id"
-            className="inputs"
-            placeholder="Property ID"
-            value={formData.property_id}
-            onChange={handleChange}
-          />
-        </Col>
-        <Col md={6} className="mt-3">
           <select
             name="priority"
             className="inputs"
@@ -134,18 +104,6 @@ export default function RequestMaintenance() {
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
-          </select>
-        </Col>
-        <Col md={6} className="mt-3">
-          <select
-            name="status"
-            className="inputs"
-            value={formData.status}
-            onChange={handleChange}
-          >
-            <option value="Pending">Pending</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Completed">Completed</option>
           </select>
         </Col>
         <Col md={12} className="mt-3">

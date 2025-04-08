@@ -434,6 +434,12 @@ background-color: purple;
   align-items: center;
   height: 10vh;
 }
+.paystack_button{
+  background-color: #301934;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
 .dashboard_icon_div4 {
   display: flex;
   justify-content: center;
