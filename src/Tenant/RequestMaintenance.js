@@ -9,17 +9,22 @@ export default function RequestMaintenance() {
   const query = useQuery();
   const tenantId = query.get("tenant_id");
   const propertyId = query.get("property_id");
+  const accommodation = query.get("accommodation");
+  const [files, setFiles] = useState(null);
+  // const [maintenanceId, setMaintenanceId] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Add this with your other state declarations
 
   const [formData, setFormData] = useState({
     tenant_name: "",
     phone_number: "",
-    accommodation: "",
+    accommodation: accommodation,
     description: "",
     category: "",
-    priority: "Medium",
+    priority: "",
     status: "Pending", // always default
     tenant_id: parseInt(tenantId, 10),
     property_id: parseInt(propertyId, 10),
+    image_urls: [],
   });
 
   const [loading, setLoading] = useState(false);
@@ -61,9 +66,55 @@ export default function RequestMaintenance() {
     }
   };
 
+  const uploadImage = async (e) => {
+    e.preventDefault();
+    console.log("clicked", { files });
+
+    if (!files?.length) {
+      alert("Missing files");
+      return;
+    }
+
+    const formDataPayload = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formDataPayload.append("images", files[i]);
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post(
+        `https://projectestate.onrender.com/api/maintenance/upload_maintenance_images`,
+        formDataPayload,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const uploadedImages = response.data;
+      const newImageUrls = uploadedImages.map((img) => img.file_url);
+      setFormData((prev) => ({
+        ...prev,
+        image_urls: [...prev.image_urls, ...newImageUrls],
+      }));
+
+      console.log("Upload successful:", newImageUrls);
+      alert("Upload successful!");
+    } catch (error) {
+      alert("Upload failed");
+      console.error("Error response:", error?.response?.data || error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="outlet_">
       <h3 className="mt-4">Request Maintenance</h3>
+      {/* {JSON.stringify(formData)} */}
       <Row>
         <Col md={6}>
           <input
@@ -89,6 +140,7 @@ export default function RequestMaintenance() {
           <input
             type="text"
             name="accommodation"
+            disabled
             className="inputs"
             placeholder="Accommodation"
             value={formData.accommodation}
@@ -102,22 +154,38 @@ export default function RequestMaintenance() {
             value={formData.priority}
             onChange={handleChange}
           >
+            <option>--Priority--</option>
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
           </select>
         </Col>
         <Col md={6} className="mt-3">
-          <select
-            name="category"
-            className="inputs"
-            value={formData.category}
-            onChange={handleChange}
-          >
-            <option value="Low">Electricity</option>
-            <option value="Medium">Plumbing</option>
-            <option value="High">Other</option>
-          </select>
+          <div className="">
+            <select
+              name="category"
+              className="inputs"
+              value={formData.category}
+              onChange={handleChange}
+            >
+              <option>--Select category--</option>
+              <option value="Electricity">Electricity</option>
+              <option value="Medium">Plumbing</option>
+              <option value="High">Other</option>
+            </select>
+          </div>
+        </Col>
+        <Col md={6} className="mt-3">
+          <p>Attach pictures</p>
+          <input
+            type="file"
+            multiple
+            onChange={(e) => setFiles(e.target.files)}
+            required
+          />
+          <button onClick={uploadImage} disabled={isLoading}>
+            {isLoading ? "Uploading..." : "Upload"}
+          </button>
         </Col>
         <Col md={12} className="mt-3">
           <textarea

@@ -143,6 +143,15 @@
   border-radius: 20px;
 }
 
+.download-tenants{
+  background-color: #e3e3e3;
+  color: #301934;
+  border: none;
+  border-radius: 30px;
+  /* float: right; */
+  font-size: 12px;
+  padding:8px 10px;
+}
 .action-btn:hover {
   /* width: 180px;  */
   /* border: 1px solid #e3e3e3; */
@@ -367,7 +376,7 @@ textarea:focus {
   border-radius: 10px;
 }
 .ch {
-  height: 45vh !important;
+  /* height: 45vh !important; */
 }
 /* .dashboard_icon_div1{
 background-color: purple;
@@ -376,6 +385,12 @@ background-color: purple;
   background-color: rgba(45, 0, 128, 0.185);
   color: rgb(45, 0, 128);
   padding: 10px;
+  border-radius: 50%;
+}
+.icon_divv {
+  background-color: rgba(0, 128, 87, 0.185);
+  color: rgb(0, 91, 50);
+  padding: 8px;
   border-radius: 50%;
 }
 
@@ -421,6 +436,12 @@ background-color: purple;
   justify-content: center;
   align-items: center;
   height: 10vh;
+}
+.dashboard_icon_divv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 10vh; */
 }
 .dashboard_icon_div2 {
   display: flex;

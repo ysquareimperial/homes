@@ -55,8 +55,12 @@ export default function ViewPM() {
     rent: "",
     email: "",
     expiry: "",
+    image_urls: [],
   });
 
+  const [files, setFiles] = useState(null);
+  // const [maintenanceId, setMaintenanceId] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Add this with your other state declarations
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -150,6 +154,7 @@ export default function ViewPM() {
       email: formData2.email,
       property_id: propertyId, // Replace with actual value
       block_id: blockId, // Replace with actual value
+      image_urls:formData2.image_urls
     };
 
     try {
@@ -183,6 +188,51 @@ export default function ViewPM() {
       setError(err.response?.data?.detail || "An error occurred.");
     } finally {
       setLoading3(false);
+    }
+  };
+
+  const uploadImage = async (e) => {
+    e.preventDefault();
+    console.log("clicked", { files });
+
+    if (!files?.length) {
+      alert("Missing files");
+      return;
+    }
+
+    const formDataPayload = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formDataPayload.append("images", files[i]);
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post(
+        `https://projectestate.onrender.com/api/tenants/upload_tenant_images`,
+        formDataPayload,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const uploadedImages = response.data;
+      const newImageUrls = uploadedImages.map((img) => img.file_url);
+      setFormData2((prev) => ({
+        ...prev,
+        image_urls: [...prev.image_urls, ...newImageUrls],
+      }));
+
+      console.log("Upload successful:", newImageUrls);
+      alert("Upload successful!");
+    } catch (error) {
+      alert("Upload failed");
+      console.error("Error response:", error?.response?.data || error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -331,7 +381,7 @@ export default function ViewPM() {
         <ModalBody className="modal-body">
           <div className="menu-div">
             <h6>Add Tenant</h6>
-            {/* {JSON.stringify(blockId)} */}
+            {/* {JSON.stringify(formData2)} */}
             <div>
               <input
                 type="text"
@@ -427,6 +477,18 @@ export default function ViewPM() {
                 value={formData2.expiry}
                 onChange={handleChange2}
               />
+              <div style={{textAlign:'left'}}>
+                <p className="mt-3">Upload agreements</p>
+                <input
+                  type="file"
+                  multiple
+                  onChange={(e) => setFiles(e.target.files)}
+                  required
+                />
+                <button onClick={uploadImage} disabled={isLoading}>
+                  {isLoading ? "Uploading..." : "Upload"}
+                </button>
+              </div>
             </div>
 
             {error && <p className="error-text">{error}</p>}

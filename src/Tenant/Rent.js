@@ -7,13 +7,18 @@ import { useNavigate } from "react-router-dom";
 import { PaystackButton } from "react-paystack";
 import { TbCreditCardPay } from "react-icons/tb";
 import axios from "axios";
+import moment from "moment/moment";
 
 const Rent = () => {
   const [expandedRows, setExpandedRows] = useState({});
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
   const [rents, setRents] = useState([]);
   const [modal, setModal] = useState(false);
+  const [modal3, setModal3] = useState(false);
+  const [propertyName, setPropertyName] = useState(null);
+  const [propertyId, setPropertyId] = useState(null);
   const toggleShowMore = (index) => {
     setExpandedRows((prev) => ({
       ...prev,
@@ -22,6 +27,9 @@ const Rent = () => {
   };
   const handleModal = () => {
     setModal(!modal);
+  };
+  const handleModal3 = () => {
+    setModal3(!modal3);
   };
   const token = localStorage.getItem("access_token");
   const name = localStorage.getItem("name");
@@ -62,12 +70,10 @@ const Rent = () => {
     ),
     reference: generateTransactionRef(),
     onSuccess: (response) => {
-      console.log(response);
-      handleModal();
+      postPaystackTransactionToDB(response?.trxref, response?.trxref);
     },
-    onClose: () => {
-      console.log("closed");
-      handleModal();
+    onClose: (response) => {
+      postPaystackTransactionToDB(response?.trxref, response?.trxref);
     },
   };
 
@@ -101,6 +107,44 @@ const Rent = () => {
     fetchRents();
   }, [token]);
 
+  const paymentAPIPaystack = `https://projectestate.onrender.com/api/payments/?provider=paystack`;
+
+  const postPaystackTransactionToDB = (transaction_id, reference_id) => {
+    setLoading2(true);
+    axios
+      .post(
+        paymentAPIPaystack,
+        {
+          transaction_id: transaction_id,
+          reference_id: reference_id,
+          amount: amount,
+          property_name: propertyName,
+          property_id: propertyId,
+          payment_datetime: moment().format(),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        console.log(response);
+
+        if (response?.status === 201 && response?.data?.status === "success") {
+          handleModal();
+        } else {
+          handleModal3();
+        }
+        setLoading2(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading2(false);
+        console.log("error fetching data", err);
+      });
+  };
   return (
     <div className="outlet_ ">
       {/* <Card className="admin-card p-3"> */}
@@ -164,13 +208,15 @@ const Rent = () => {
                           onClick={() => {
                             handleModal();
                             setAmount(tenant?.rent_fee);
+                            setPropertyId(tenant?.property_id);
+                            setPropertyName(tenant?.property_name);
                           }}
                         />
                         <GrVmMaintenance
                           size="1.4em"
                           onClick={() =>
                             navigate(
-                              `/tenant/request-maintenance?property_id=${tenant?.property_id}&tenant_id=${tenant?.tenant_id}`
+                              `/tenant/request-maintenance?property_id=${tenant?.property_id}&tenant_id=${tenant?.tenant_id}&accommodation=${tenant?.property_name}`
                             )
                           }
                         />
@@ -187,6 +233,19 @@ const Rent = () => {
         <div className="pay_badge m-0 mt-1 p-2">
           <h6>Choose payment method</h6>
           <PaystackButton className="paystack_button" {...componentProps} />
+        </div>
+      </Modal>
+      <Modal size="sm" isOpen={modal3}>
+        <div className="create_album_modal p-3">
+          <p style={{ fontSize: 12 }} className="m-0 mb-2">
+            Transaction failed, try again later.
+          </p>
+
+          <div className="d-flex justify-content-end">
+            <button className="app_btn_2" onClick={() => navigate(-1)}>
+              OK
+            </button>
+          </div>
         </div>
       </Modal>
     </div>

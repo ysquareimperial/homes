@@ -53,35 +53,35 @@ const MaintenanceHistory = () => {
     setShowMore((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-    const fetchMaintenance = () => {
-      setLoading(true);
+  const fetchMaintenance = () => {
+    setLoading(true);
 
-      if (!token) {
-        console.error("No access token found");
+    if (!token) {
+      console.error("No access token found");
+      setLoading(false);
+      return;
+    }
+
+    axios
+      .get("https://projectestate.onrender.com/api/maintenance", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
         setLoading(false);
-        return;
-      }
+        setMaintenanceHist(response?.data);
+        console.log(response);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log("error fetching data", err);
+      });
+  };
 
-      axios
-        .get("https://projectestate.onrender.com/api/maintenance", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          setLoading(false);
-          setMaintenanceHist(response?.data);
-          console.log(response);
-        })
-        .catch((err) => {
-          setLoading(false);
-          console.log("error fetching data", err);
-        });
-    };
-
-    useEffect(() => {
-      fetchMaintenance();
-    }, [token]);
+  useEffect(() => {
+    fetchMaintenance();
+  }, [token]);
   return (
     <div className="outlet_">
       <Row className="mt-3 m-0">
@@ -97,48 +97,72 @@ const MaintenanceHistory = () => {
           /> */}
         </Col>
       </Row>
-      <div className="mt-3">
-        {maintenanceHist.map((item) => (
-          <div key={item.id} className="card p-3 mb-3">
-            <h5>{item.property_name}</h5>
-            <p>
-              <strong>Phone:</strong> {item.phone_number}
-            </p>
-            {/* <p>
-              <strong>Category:</strong> Category
-            </p> */}
-            <p>
-              <strong>Details:</strong>{" "}
-              {showMore[item.id]
-                ? item.description
-                : `${item.description.substring(0, 30)}...`}
-              {item.description.length > 30 && (
-                <span
-                  onClick={() => toggleShowMore(item.id)}
-                  className="text-primary underline"
-                >
-                  {" "}
-                  {showMore[item.id] ? "Less" : "More"}
-                </span>
-              )}
-            </p>
-            <p>
-              <strong>Priority:</strong> {item.priority}
-            </p>
-            <p
-              className={
-                item.status === "Treated"
-                  ? "text-success"
-                  : item.status === "Pending"
-                  ? "text-warning"
-                  : "text-danger"
-              }
-            >
-              <strong>Status:</strong> {item.status}
-            </p>
+      {loading ? (
+        <div className="d-flex justify-content-center mt-5">
+          <div class="auth_btn_loader" style={{ color: "grey" }}>
+            <span
+              style={{ width: "1rem", height: "1rem" }}
+              class="spinner-border"
+              role="status"
+              aria-hidden="true"
+            ></span>
           </div>
-        ))}
-      </div>
+        </div>
+      ) : (
+        <div className="mt-3">
+          {maintenanceHist?.length === 0 ? (
+            <div className="text-center">
+              <span>No maintenance found</span>
+            </div>
+          ) : (
+            <>
+              {maintenanceHist.map((item) => (
+                <div key={item.id} className="card p-3 mb-3">
+                  <h5>{item.property_name}</h5>
+                  <p>
+                    <strong>Phone:</strong> {item.phone_number}
+                  </p>
+
+                  <p>
+                    <strong>Details:</strong>{" "}
+                    {showMore[item.id]
+                      ? item.description
+                      : `${item.description.substring(0, 30)}...`}
+                    {item.description.length > 30 && (
+                      <span
+                        onClick={() => toggleShowMore(item.id)}
+                        className="text-primary underline"
+                      >
+                        {" "}
+                        {showMore[item.id] ? "Less" : "More"}
+                      </span>
+                    )}
+                  </p>
+                  <p>
+                    <strong>Priority:</strong> {item.priority}
+                  </p>
+                  <p
+                    className={
+                      item.status === "Treated"
+                        ? "text-success"
+                        : item.status === "Pending"
+                        ? "text-warning"
+                        : "text-danger"
+                    }
+                  >
+                    <strong>Status:</strong> {item.status}
+                  </p>
+
+                  <p>Attached Images</p>
+                  {item?.images?.map((item, index) => (
+                    <img src={item.file_url} />
+                  ))}
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };
