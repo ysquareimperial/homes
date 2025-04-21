@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { GrVmMaintenance } from "react-icons/gr";
 import { MdMoney } from "react-icons/md";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
-import { Col, Modal, Row } from "reactstrap";
+import { Col, Modal, ModalBody, Row } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { PaystackButton } from "react-paystack";
 import { TbCreditCardPay } from "react-icons/tb";
@@ -19,6 +19,12 @@ const Rent = () => {
   const [modal3, setModal3] = useState(false);
   const [propertyName, setPropertyName] = useState(null);
   const [propertyId, setPropertyId] = useState(null);
+  const [agreementImages, setAgreementImages] = useState([]);
+  const [open5, setOpen5] = useState(false);
+  const toggle5 = () => {
+    setOpen5(!open5);
+  };
+
   const toggleShowMore = (index) => {
     setExpandedRows((prev) => ({
       ...prev,
@@ -183,11 +189,12 @@ const Rent = () => {
                   <Th className="p-2 border">Rent Fee</Th>
                   <Th className="p-2 border">Payment Status</Th>
                   <Th className="p-2 border">Action</Th>
+                  <Th className="p-2 border">Agreement</Th>
                 </Tr>
               </Thead>
               <Tbody>
                 {rents.map((tenant, index) => (
-                  <Tr key={index}>
+                  <Tr key={index} className="border-b table_row">
                     <Td className="p-2 border">{tenant.property_name}</Td>
                     <Td className="p-2 border">{tenant.property_address}</Td>
                     <Td className="p-2 border">{tenant.rent_duration}</Td>
@@ -222,6 +229,15 @@ const Rent = () => {
                         />
                       </div>
                     </Td>
+                    <Td
+                      className="p-2 border"
+                      onClick={() => {
+                        setAgreementImages(tenant?.image_urls);
+                        toggle5();
+                      }}
+                    >
+                      View
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -247,6 +263,35 @@ const Rent = () => {
             </button>
           </div>
         </div>
+      </Modal>
+
+      <Modal
+        size="sm"
+        isOpen={open5}
+        toggle={toggle5}
+        className="avail-cars"
+        style={{ padding: 0 }}
+      >
+        <ModalBody className="modal-body">
+          <div className="">
+            <p>Attached Images</p>
+            {/* {JSON.stringify(agreementImages)} */}
+            {agreementImages.map((item, index) => (
+              <div style={{ width: "100%", overflow: "hidden" }}>
+                <img
+                  key={index}
+                  src={item}
+                  alt={`tenant agreement ${index}`}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </ModalBody>
       </Modal>
     </div>
   );
