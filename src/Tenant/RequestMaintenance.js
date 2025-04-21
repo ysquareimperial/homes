@@ -28,7 +28,11 @@ export default function RequestMaintenance() {
   });
 
   const [loading, setLoading] = useState(false);
-
+  const handleFileChange = async (e) => {
+    const selectedFiles = e.target.files;
+    setFiles(selectedFiles);
+    await uploadImage(selectedFiles); // Call upload directly
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -66,18 +70,60 @@ export default function RequestMaintenance() {
     }
   };
 
-  const uploadImage = async (e) => {
-    e.preventDefault();
-    console.log("clicked", { files });
+  // const uploadImage = async (e) => {
+  //   e.preventDefault();
+  //   console.log("clicked", { files });
 
-    if (!files?.length) {
+  //   if (!files?.length) {
+  //     alert("Missing files");
+  //     return;
+  //   }
+
+  //   const formDataPayload = new FormData();
+  //   for (let i = 0; i < files.length; i++) {
+  //     formDataPayload.append("images", files[i]);
+  //   }
+
+  //   setIsLoading(true);
+
+  //   try {
+  //     const response = await axios.post(
+  //       `https://projectestate.onrender.com/api/maintenance/upload_maintenance_images`,
+  //       formDataPayload,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+
+  //     const uploadedImages = response.data;
+  //     const newImageUrls = uploadedImages.map((img) => img.file_url);
+  //     setFormData((prev) => ({
+  //       ...prev,
+  //       image_urls: [...prev.image_urls, ...newImageUrls],
+  //     }));
+
+  //     console.log("Upload successful:", newImageUrls);
+  //     alert("Upload successful!");
+  //   } catch (error) {
+  //     alert("Upload failed");
+  //     console.error("Error response:", error?.response?.data || error.message);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  const uploadImage = async (selectedFiles) => {
+    if (!selectedFiles?.length) {
       alert("Missing files");
       return;
     }
 
     const formDataPayload = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      formDataPayload.append("images", files[i]);
+    for (let i = 0; i < selectedFiles.length; i++) {
+      formDataPayload.append("images", selectedFiles[i]);
     }
 
     setIsLoading(true);
@@ -180,12 +226,14 @@ export default function RequestMaintenance() {
           <input
             type="file"
             multiple
-            onChange={(e) => setFiles(e.target.files)}
+            onChange={(e) => handleFileChange(e)}
             required
           />
-          <button onClick={uploadImage} disabled={isLoading}>
-            {isLoading ? "Uploading..." : "Upload"}
-          </button>
+
+          {/* <button onClick={uploadImage} disabled={isLoading}>
+                  {isLoading ? "Uploading..." : "Upload"}
+                </button> */}
+          <p>{isLoading ? "Uploading..." : ""}</p>
         </Col>
         <Col md={12} className="mt-3">
           <textarea

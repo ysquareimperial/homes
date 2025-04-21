@@ -65,58 +65,79 @@ const Maintenance = () => {
         </Col>
         <Col md={6}></Col>
       </Row>
-      <Table className="mt-3">
-        <Thead>
-          <Tr className="">
-            <Th className="p-2 border">Property</Th>
-            <Th className="p-2 border">Tenant</Th>
-            <Th className="p-2 border">Phone</Th>
-            <Th className="p-2 border">Date</Th>
-            {/* <Th className="p-2 border">Category</Th> */}
-            <Th className="p-2 border">Details</Th>
-            <Th className="p-2 border">Priority</Th>
-            <Th className="p-2 border">Attached Images</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {maintenanceHist.map((item, index) => (
-            <Tr key={index} className="border-b table_row">
-              <Td className="p-2 border">{item.property_name}</Td>
-              <Td className="p-2 border">{item.tenant_name}</Td>
-              <Td className="p-2 border">{item.phone_number}</Td>
-              <Td className="p-2 border">
-                {moment(item?.created_at).format("MMMM D, YYYY h:mm A")}
-              </Td>
+      {loading ? (
+        <div className="d-flex justify-content-center mt-5">
+          <div class="auth_btn_loader" style={{ color: "grey" }}>
+            <span
+              style={{ width: "1rem", height: "1rem" }}
+              class="spinner-border"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </div>
+        </div>
+      ) : (
+        <>
+          {maintenanceHist?.length === 0 ? (
+            <div className="text-center">
+              <span>No maintenance found</span>
+            </div>
+          ) : (
+            <Table className="mt-3">
+              <Thead>
+                <Tr className="">
+                  <Th className="p-2 border">Property</Th>
+                  <Th className="p-2 border">Tenant</Th>
+                  <Th className="p-2 border">Phone</Th>
+                  <Th className="p-2 border">Date</Th>
+                  {/* <Th className="p-2 border">Category</Th> */}
+                  <Th className="p-2 border">Details</Th>
+                  <Th className="p-2 border">Priority</Th>
+                  <Th className="p-2 border">Attached Images</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {maintenanceHist.map((item, index) => (
+                  <Tr key={index} className="border-b table_row">
+                    <Td className="p-2 border">{item.property_name}</Td>
+                    <Td className="p-2 border">{item.tenant_name}</Td>
+                    <Td className="p-2 border">{item.phone_number}</Td>
+                    <Td className="p-2 border">
+                      {moment(item?.created_at).format("MMMM D, YYYY h:mm A")}
+                    </Td>
 
-              {/* <Td className="p-2 border">{item.category}</Td> */}
-              <Td className="p-2 border">
-                {expandedRows[index] || item.description?.length <= 50
-                  ? item.description
-                  : `${item.description.substring(0, 50)}... `}
-                {item.description?.length > 50 && (
-                  <span
-                    onClick={() => toggleShowMore(index)}
-                    className="text-primary underline"
-                  >
-                    {" "}
-                    {expandedRows[index] ? "Less" : "More"}
-                  </span>
-                )}
-              </Td>
-              <Td className="p-2 border">{item.priority}</Td>
-              <Td
-                className="p-2 border"
-                onClick={() => {
-                  setMaintenanceImages(item?.images);
-                  toggle5();
-                }}
-              >
-                View
-              </Td>
-            </Tr>
-          ))}
-        </Tbody>
-      </Table>
+                    {/* <Td className="p-2 border">{item.category}</Td> */}
+                    <Td className="p-2 border">
+                      {expandedRows[index] || item.description?.length <= 50
+                        ? item.description
+                        : `${item.description.substring(0, 50)}... `}
+                      {item.description?.length > 50 && (
+                        <span
+                          onClick={() => toggleShowMore(index)}
+                          className="text-primary underline"
+                        >
+                          {" "}
+                          {expandedRows[index] ? "Less" : "More"}
+                        </span>
+                      )}
+                    </Td>
+                    <Td className="p-2 border">{item.priority}</Td>
+                    <Td
+                      className="p-2 border"
+                      onClick={() => {
+                        setMaintenanceImages(item?.images);
+                        toggle5();
+                      }}
+                    >
+                      View
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          )}
+        </>
+      )}
 
       <Modal
         size="sm"

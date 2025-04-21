@@ -4,45 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { Col, Row } from "reactstrap";
 import axios from "axios";
 
-const maintenanceHistoryData = [
-  {
-    id: 1,
-    tenant: "Habu Yakasai",
-    phone: "+234 090 3334 434",
-    category: "Plumbing",
-    details: "Leaking pipe in the kitchen, needs urgent fixing.",
-    priority: "High",
-    status: "Treated",
-  },
-  {
-    id: 2,
-    tenant: "Amina Bello",
-    phone: "+234 081 5678 123",
-    category: "Electrical",
-    details: "Frequent power tripping in the apartment.",
-    priority: "Medium",
-    status: "Pending",
-  },
-  {
-    id: 3,
-    tenant: "John Doe",
-    phone: "+234 080 9876 654",
-    category: "Carpentry",
-    details: "Broken door frame in the living room.",
-    priority: "Low",
-    status: "Canceled",
-  },
-  {
-    id: 4,
-    tenant: "Fatima Suleiman",
-    phone: "+234 070 4567 890",
-    category: "HVAC",
-    details: "Air conditioner not cooling properly.",
-    priority: "High",
-    status: "Pending",
-  },
-];
-
 const MaintenanceHistory = () => {
   const [showMore, setShowMore] = useState({});
   const navigate = useNavigate();
@@ -141,7 +102,7 @@ const MaintenanceHistory = () => {
                   <p>
                     <strong>Priority:</strong> {item.priority}
                   </p>
-                  <p
+                  {/* <p
                     className={
                       item.status === "Treated"
                         ? "text-success"
@@ -151,7 +112,7 @@ const MaintenanceHistory = () => {
                     }
                   >
                     <strong>Status:</strong> {item.status}
-                  </p>
+                  </p> */}
 
                   <p>Attached Images</p>
                   <Row>

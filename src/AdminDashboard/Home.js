@@ -167,11 +167,16 @@ export default function Home() {
   const downloadCSV = () => {
     if (!data.length) return;
 
-    const headers = Object.keys(data[0]);
+    // Remove 'id' and add 'S/N' as the first column
+    const originalHeaders = Object.keys(data[0]).filter((key) => key !== "id");
+    const headers = ["S/N", ...originalHeaders]; // Include S/N as the first column
     const csvRows = [headers.join(",")];
 
-    data.forEach((row) => {
-      const values = headers.map((header) => `"${row[header]}"`);
+    data.forEach((row, index) => {
+      const values = [index + 1]; // S/N starts from 1
+      originalHeaders.forEach((header) => {
+        values.push(`"${row[header]}"`);
+      });
       csvRows.push(values.join(","));
     });
 
@@ -212,8 +217,7 @@ export default function Home() {
         <button className="mt-4 download-tenants" onClick={downloadCSV}>
           <div className="dashboard_icon_divv">
             <div>
-              Download Tenants{" "}
-              <TfiDownload size="2.5em" className="icon_divv" />
+              Tenants Record <TfiDownload size="2.5em" className="icon_divv" />
               {/* <BsClockHistory size="2.5em" className="icon_div1" /> */}
             </div>
           </div>

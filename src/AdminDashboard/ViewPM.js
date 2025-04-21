@@ -154,7 +154,7 @@ export default function ViewPM() {
       email: formData2.email,
       property_id: propertyId, // Replace with actual value
       block_id: blockId, // Replace with actual value
-      image_urls:formData2.image_urls
+      image_urls: formData2.image_urls,
     };
 
     try {
@@ -191,18 +191,15 @@ export default function ViewPM() {
     }
   };
 
-  const uploadImage = async (e) => {
-    e.preventDefault();
-    console.log("clicked", { files });
-
-    if (!files?.length) {
+  const uploadImage = async (selectedFiles) => {
+    if (!selectedFiles?.length) {
       alert("Missing files");
       return;
     }
 
     const formDataPayload = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      formDataPayload.append("images", files[i]);
+    for (let i = 0; i < selectedFiles.length; i++) {
+      formDataPayload.append("images", selectedFiles[i]);
     }
 
     setIsLoading(true);
@@ -235,6 +232,13 @@ export default function ViewPM() {
       setIsLoading(false);
     }
   };
+
+  const handleFileChange = async (e) => {
+    const selectedFiles = e.target.files;
+    setFiles(selectedFiles);
+    await uploadImage(selectedFiles); // Call upload directly
+  };
+
   return (
     <div className="outlet_">
       {/* <Card className="admin-card p-3"> */}
@@ -471,23 +475,31 @@ export default function ViewPM() {
                 onChange={handleChange2}
               />
               <input
-                type="date"
+                type="text"
                 className="inputs"
                 name="expiry"
                 value={formData2.expiry}
                 onChange={handleChange2}
+                onFocus={(e) => (e.target.type = "date")}
+                onBlur={(e) => {
+                  if (!e.target.value) e.target.type = "text";
+                }}
+                placeholder="Select expiry date"
               />
-              <div style={{textAlign:'left'}}>
+
+              <div style={{ textAlign: "left" }}>
                 <p className="mt-3">Upload agreements</p>
                 <input
                   type="file"
                   multiple
-                  onChange={(e) => setFiles(e.target.files)}
+                  onChange={(e) => handleFileChange(e)}
                   required
                 />
-                <button onClick={uploadImage} disabled={isLoading}>
+
+                {/* <button onClick={uploadImage} disabled={isLoading}>
                   {isLoading ? "Uploading..." : "Upload"}
-                </button>
+                </button> */}
+                <p>{isLoading ? "Uploading..." : ""}</p>
               </div>
             </div>
 
