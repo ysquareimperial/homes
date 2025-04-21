@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
-import { Col, Row } from "reactstrap";
+import { Col, Modal, ModalBody, Row } from "reactstrap";
 import Button from "./Button";
 import moment from "moment";
 
@@ -11,6 +11,8 @@ const Maintenance = () => {
   const [expandedRows, setExpandedRows] = useState({});
   const token = localStorage.getItem("access_token");
   const navigate = useNavigate();
+  const [maintenanceImages, setMaintenanceImages] = useState([]);
+
   const [maintenanceHist, setMaintenanceHist] = useState([]);
   const [loading, setLoading] = useState(false);
   const toggleShowMore = (index) => {
@@ -18,6 +20,10 @@ const Maintenance = () => {
       ...prev,
       [index]: !prev[index],
     }));
+  };
+  const [open5, setOpen5] = useState(false);
+  const toggle5 = () => {
+    setOpen5(!open5);
   };
 
   const fetchMaintenance = () => {
@@ -59,9 +65,9 @@ const Maintenance = () => {
         </Col>
         <Col md={6}></Col>
       </Row>
-      <Table className="mt-3 border-collapse w-full">
+      <Table className="mt-3">
         <Thead>
-          <Tr className="bg-gray-200">
+          <Tr className="">
             <Th className="p-2 border">Property</Th>
             <Th className="p-2 border">Tenant</Th>
             <Th className="p-2 border">Phone</Th>
@@ -69,11 +75,12 @@ const Maintenance = () => {
             {/* <Th className="p-2 border">Category</Th> */}
             <Th className="p-2 border">Details</Th>
             <Th className="p-2 border">Priority</Th>
+            <Th className="p-2 border">Attached Images</Th>
           </Tr>
         </Thead>
         <Tbody>
           {maintenanceHist.map((item, index) => (
-            <Tr key={index} className="border-b">
+            <Tr key={index} className="border-b table_row">
               <Td className="p-2 border">{item.property_name}</Td>
               <Td className="p-2 border">{item.tenant_name}</Td>
               <Td className="p-2 border">{item.phone_number}</Td>
@@ -97,10 +104,48 @@ const Maintenance = () => {
                 )}
               </Td>
               <Td className="p-2 border">{item.priority}</Td>
+              <Td
+                className="p-2 border"
+                onClick={() => {
+                  setMaintenanceImages(item?.images);
+                  toggle5();
+                }}
+              >
+                View
+              </Td>
             </Tr>
           ))}
         </Tbody>
       </Table>
+
+      <Modal
+        size="sm"
+        isOpen={open5}
+        toggle={toggle5}
+        className="avail-cars"
+        style={{ padding: 0 }}
+      >
+        <ModalBody className="modal-body">
+          <div className="">
+            <p>Attached Images</p>
+            {/* {JSON.stringify(maintenanceImages)} */}
+            {maintenanceImages.map((item, index) => (
+              <div style={{ width: "100%", overflow: "hidden" }}>
+                <img
+                  key={index}
+                  src={item.file_url}
+                  alt={`tenant agreement ${index}`}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </ModalBody>
+      </Modal>
     </div>
   );
 };

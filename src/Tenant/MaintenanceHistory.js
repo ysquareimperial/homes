@@ -154,9 +154,15 @@ const MaintenanceHistory = () => {
                   </p>
 
                   <p>Attached Images</p>
-                  {item?.images?.map((item, index) => (
-                    <img src={item.file_url} />
-                  ))}
+                  <Row>
+                    <Col md={4}>
+                      {item?.images?.map((item, index) => (
+                        <div>
+                          <img src={item.file_url} style={{ width: "100%" }} />
+                        </div>
+                      ))}
+                    </Col>
+                  </Row>
                 </div>
               ))}
             </>

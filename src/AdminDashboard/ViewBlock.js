@@ -14,6 +14,7 @@ export default function ViewBlock() {
   const [loading2, setLoading2] = useState(false);
   const [loading3, setLoading3] = useState(false);
   const [block, setBlock] = useState({});
+  const [tenantAgreement, setTenantAgreement] = useState([]);
   const [tenantId, setTenantId] = useState(null);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(null);
@@ -257,7 +258,10 @@ export default function ViewBlock() {
                           <Printer
                             className="menu"
                             size="1.5em"
-                            onClick={toggle5}
+                            onClick={() => {
+                              setTenantAgreement(item?.image_urls);
+                              toggle5();
+                            }}
                           />
                         </div>
                       </Td>
@@ -426,9 +430,25 @@ export default function ViewBlock() {
             style={{ padding: 0 }}
           >
             <ModalBody className="modal-body">
-              <div className="menu-div">
-                <h6>Print</h6>
-                <Table className="mt-4" striped borderless size="sm">
+              <div className="">
+                <p>Agreement</p>
+                {/* {JSON.stringify(tenantAgreement)} */}
+                {tenantAgreement.map((item, index) => (
+                  <div style={{ width: "100%", overflow: "hidden" }}>
+                    <img
+                      key={index}
+                      src={item}
+                      alt={`tenant agreement ${index}`}
+                      style={{
+                        maxWidth: "100%",
+                        maxHeight: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
+                  </div>
+                ))}
+
+                {/* <Table className="mt-4" striped borderless size="sm">
                   <thead>
                     <tr>
                       <th></th>
@@ -483,7 +503,7 @@ export default function ViewBlock() {
                       </td>
                     </tr>
                   </tbody>
-                </Table>
+                </Table> */}
               </div>
             </ModalBody>
           </Modal>

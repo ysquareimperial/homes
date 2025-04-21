@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Card } from "reactstrap";
 import { BsClockHistory, BsClock } from "react-icons/bs";
 import { MdMapsHomeWork } from "react-icons/md";
@@ -8,29 +8,115 @@ import DoughnutChart from "../Operator/Doughnut";
 import BarChart from "../Operator/BarChart";
 import TenantsByAccommodation from "../Operator/TenantsByAccommodation";
 import { FaCalendar, FaUser } from "react-icons/fa";
+import axios from "axios";
 export default function TenantDashboard() {
+  const token = localStorage.getItem("access_token");
+  const [loading1, setLoading1] = useState(false);
+  const [upcomingRents, setUpcomingRents] = useState([]);
+  const [maintenanceCount, setMaintenanceCount] = useState(null);
+  const [totalProperties, setTotalProperties] = useState(null);
+  const [totalTenants, setTotalTenants] = useState(null);
+  const [rentDues, setRentDues] = useState([]);
+  const [data, setData] = useState([]);
+
+  const fetchUpcomingRents = () => {
+    setLoading1(true);
+
+    if (!token) {
+      console.error("No access token found");
+      setLoading1(false);
+      return;
+    }
+    axios
+      .get(
+        "https://projectestate.onrender.com/api/dashboard/tenant/upcoming-rents",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        setLoading1(false);
+        setUpcomingRents(response?.data);
+        console.log(response);
+        console.log("upcoming rents");
+      })
+      .catch((err) => {
+        setLoading1(false);
+        console.log("error fetching data", err);
+      });
+  };
+
+  const fetchMaintenanceCount = () => {
+    setLoading1(true);
+
+    if (!token) {
+      console.error("No access token found");
+      setLoading1(false);
+      return;
+    }
+    axios
+      .get(
+        "https://projectestate.onrender.com/api/dashboard/tenant/maintenance-count",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        setLoading1(false);
+        setMaintenanceCount(response?.data);
+        console.log(response);
+        console.log("umaintenance count");
+      })
+      .catch((err) => {
+        setLoading1(false);
+        console.log("error fetching data", err);
+      });
+  };
+
+  useEffect(() => {
+    fetchUpcomingRents();
+    fetchMaintenanceCount();
+  }, [token]);
+
   return (
     <div className="outlet_">
       <Row className="mt-4">
         <Col lg={3}>
           <Card className="dashboard_card p-3 shadow-sm">
-            <Row>
-              <Col lg={3} md={3} sm={3} xs={3}>
-                <div className="dashboard_icon_div1">
-                  <div>
-                    <BsClockHistory size="2.5em" className="icon_div1" />
-                  </div>
+            {loading1 ? (
+              <div className="d-flex justify-content-center p-4">
+                <div class="auth_btn_loader" style={{ color: "grey" }}>
+                  <span
+                    style={{ width: "1rem", height: "1rem" }}
+                    class="spinner-border"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
                 </div>
-              </Col>
-              <Col lg={9} md={9} sm={9} xs={9}>
-                <div className="dashboard_card_details">
-                  <div>
-                    <p className="d_count">12</p>
-                    <p className="d_text"> Upcoming Rents</p>
+              </div>
+            ) : (
+              <Row>
+                <Col lg={3} md={3} sm={3} xs={3}>
+                  <div className="dashboard_icon_div1">
+                    <div>
+                      <BsClockHistory size="2.5em" className="icon_div1" />
+                    </div>
                   </div>
-                </div>
-              </Col>
-            </Row>
+                </Col>
+                <Col lg={9} md={9} sm={9} xs={9}>
+                  <div className="dashboard_card_details">
+                    <div>
+                      <p className="d_count">{upcomingRents?.length}</p>
+                      <p className="d_text"> Upcoming Rents</p>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            )}
           </Card>
         </Col>
         <Col lg={3}>
@@ -77,19 +163,34 @@ export default function TenantDashboard() {
         </Col>
         <Col lg={3}>
           <Card className="dashboard_card p-3 shadow-sm">
-            <Row>
-              <Col lg={3} md={3} sm={3} xs={3}>
-                <div className="dashboard_icon_div4">
-                  <div>
-                    <ImUsers size="2.5em" className="icon_div4" />
-                  </div>
+            {loading1 ? (
+              <div className="d-flex justify-content-center p-4">
+                <div class="auth_btn_loader" style={{ color: "grey" }}>
+                  <span
+                    style={{ width: "1rem", height: "1rem" }}
+                    class="spinner-border"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
                 </div>
-              </Col>
-              <Col lg={9} md={9} sm={9} xs={9}>
-                <p className="d_count">412</p>
-                <p className="d_text"> Maintenance request</p>
-              </Col>
-            </Row>
+              </div>
+            ) : (
+              <Row>
+                <Col lg={3} md={3} sm={3} xs={3}>
+                  <div className="dashboard_icon_div4">
+                    <div>
+                      <ImUsers size="2.5em" className="icon_div4" />
+                    </div>
+                  </div>
+                </Col>
+                <Col lg={9} md={9} sm={9} xs={9}>
+                  <p className="d_count">
+                    {maintenanceCount?.maintenance_request_count}
+                  </p>
+                  <p className="d_text"> Maintenance request</p>
+                </Col>
+              </Row>
+            )}
           </Card>
         </Col>
       </Row>
@@ -108,60 +209,28 @@ export default function TenantDashboard() {
               scrolldelay="200"
               height="200"
             >
-              <div style={{ marginBottom: 30 }} className="">
-                <p
-                  className="marq_el"
-                  style={{ margin: 0, marginRight: 10, display: "inline" }}
-                >
-                  <MdMapsHomeWork
-                    className="not_icon"
-                    size="1em"
-                    color="grey"
-                  />{" "}
-                  PM1
-                </p>
-                <p
-                  className="marq_el"
-                  style={{ margin: 0, marginRight: 10, display: "inline" }}
-                >
-                  <FaUser className="not_icon" size="1em" color="grey" />{" "}
-                  Tenant: Habu Yakasai
-                </p>
-                <p
-                  className="marq_el"
-                  style={{ margin: 0, marginRight: 10, display: "inline" }}
-                >
-                  <FaCalendar className="not_icon" size="1em" color="grey" />{" "}
-                  Date: 12/12/2022
-                </p>
-              </div>
-              <div style={{ marginBottom: 30 }} className="">
-                <p
-                  className="marq_el"
-                  style={{ margin: 0, marginRight: 10, display: "inline" }}
-                >
-                  <MdMapsHomeWork
-                    className="not_icon"
-                    size="1em"
-                    color="grey"
-                  />{" "}
-                  PM1
-                </p>
-                <p
-                  className="marq_el"
-                  style={{ margin: 0, marginRight: 10, display: "inline" }}
-                >
-                  <FaUser className="not_icon" size="1em" color="grey" />{" "}
-                  Tenant: Habu Yakasai
-                </p>
-                <p
-                  className="marq_el"
-                  style={{ margin: 0, marginRight: 10, display: "inline" }}
-                >
-                  <FaCalendar className="not_icon" size="1em" color="grey" />{" "}
-                  Date: 12/12/2022
-                </p>
-              </div>
+              {upcomingRents?.map((item, idnex) => (
+                <div style={{ marginBottom: 30 }} className="">
+                  <p
+                    className="marq_el"
+                    style={{ margin: 0, marginRight: 10, display: "inline" }}
+                  >
+                    <MdMapsHomeWork
+                      className="not_icon"
+                      size="1em"
+                      color="grey"
+                    />{" "}
+                    {item.property_name}
+                  </p>
+                  <p
+                    className="marq_el"
+                    style={{ margin: 0, marginRight: 10, display: "inline" }}
+                  >
+                    <FaCalendar className="not_icon" size="1em" color="grey" />{" "}
+                    Date: {item.expiry}
+                  </p>
+                </div>
+              ))}
             </marquee>
           </Card>
         </Col>
