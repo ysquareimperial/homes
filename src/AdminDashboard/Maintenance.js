@@ -12,7 +12,7 @@ const Maintenance = () => {
   const token = localStorage.getItem("access_token");
   const navigate = useNavigate();
   const [maintenanceImages, setMaintenanceImages] = useState([]);
-
+  const role = localStorage.getItem("role");
   const [maintenanceHist, setMaintenanceHist] = useState([]);
   const [loading, setLoading] = useState(false);
   const toggleShowMore = (index) => {
@@ -36,7 +36,7 @@ const Maintenance = () => {
     }
 
     axios
-      .get("https://projectestate.onrender.com/api/maintenance", {
+      .get("https://projectestate.onrender.com/api/maintenance/by-landlord", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

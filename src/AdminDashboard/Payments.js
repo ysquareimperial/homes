@@ -55,7 +55,7 @@ function Payments() {
     }
 
     axios
-      .get("https://projectestate.onrender.com/api/payments", {
+      .get("https://projectestate.onrender.com/api/payments/by-landlord", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

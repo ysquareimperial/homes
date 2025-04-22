@@ -155,13 +155,7 @@ export default function Navbar() {
                 </p>
               </div>
             )}
-            <p
-              className={`mt-5 list ${
-                location.pathname === "/tenant/maintenance-history" &&
-                "active_listss"
-              }`}
-              onClick={handleLogout}
-            >
+            <p className={`mt-5 list`} onClick={handleLogout}>
               <IoLogInOutline size="1.5em" /> Log out
             </p>
           </>

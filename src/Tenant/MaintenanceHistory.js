@@ -24,11 +24,11 @@ const MaintenanceHistory = () => {
     }
 
     axios
-      .get("https://projectestate.onrender.com/api/maintenance", {
+      .get("https://projectestate.onrender.com/api/maintenance/by-tenant", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
+      })  
       .then((response) => {
         setLoading(false);
         setMaintenanceHist(response?.data);
